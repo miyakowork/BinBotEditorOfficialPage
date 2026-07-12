@@ -1,10 +1,22 @@
-import { ReleaseButton } from './components/ReleaseButton'
+import { EditorPreview } from './components/EditorPreview'
+import { Faq } from './components/Faq'
+import { FeatureSections } from './components/FeatureSections'
+import { Footer } from './components/Footer'
+import { Hero } from './components/Hero'
+import { Navigation } from './components/Navigation'
+import './styles.css'
 
 export default function App() {
   return (
-    <main>
-      <h1>思考，在代码之前。</h1>
-      <ReleaseButton />
-    </main>
+    <>
+      <Navigation />
+      <main>
+        <Hero />
+        <EditorPreview />
+        <FeatureSections />
+        <Faq />
+      </main>
+      <Footer />
+    </>
   )
 }

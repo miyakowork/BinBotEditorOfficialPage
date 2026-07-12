@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="BinBotEditor">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#34314f"/><stop offset="1" stop-color="#12121b"/></linearGradient>
+    <linearGradient id="code" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8fc7ff"/><stop offset="1" stop-color="#c5a5ff"/></linearGradient>
+  </defs>
+  <rect x="8" y="8" width="112" height="112" rx="28" fill="url(#bg)" stroke="#fff" stroke-opacity=".12"/>
+  <path d="M51 43 34 64l17 21M77 43l17 21-17 21M70 38 58 90" fill="none" stroke="url(#code)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
