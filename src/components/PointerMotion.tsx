@@ -30,6 +30,15 @@ export function PointerMotion() {
     }
 
     const handlePointerMove = (event: PointerEvent) => {
+      if (event.pointerType === 'touch') {
+        if (frame !== null) {
+          window.cancelAnimationFrame(frame)
+          frame = null
+        }
+        removePointerProperties(root)
+        return
+      }
+
       x = event.clientX
       y = event.clientY
       if (frame === null) frame = window.requestAnimationFrame(commitPointerPosition)

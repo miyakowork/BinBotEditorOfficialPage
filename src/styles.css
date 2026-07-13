@@ -11,6 +11,7 @@
   --line:rgba(40,28,60,.12);
   --violet:#7047e8;
   --cyan:#4bbfe8;
+  --cyan-text:#146f8d;
   --editor:#15131a;
   --serif:"Songti SC","STSong",serif;
 }
@@ -434,7 +435,7 @@ a {
 }
 
 .product-stage-caption strong {
-  color: var(--cyan);
+  color: var(--cyan-text);
 }
 
 .editor-window {
@@ -1658,6 +1659,12 @@ a {
 
   .magnetic-button {
     transform: none !important;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }
 

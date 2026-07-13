@@ -58,6 +58,15 @@ function mockChangingMotionPreferences() {
   }
 }
 
+function firePointerMove(
+  target: Window | Element,
+  { clientX, clientY, pointerType }: { clientX: number; clientY: number; pointerType: string },
+) {
+  const event = new MouseEvent('pointermove', { bubbles: true, clientX, clientY })
+  Object.defineProperty(event, 'pointerType', { value: pointerType })
+  fireEvent(target, event)
+}
+
 describe('motion primitives', () => {
   afterEach(() => {
     vi.unstubAllGlobals()
@@ -92,6 +101,30 @@ describe('motion primitives', () => {
 
     expect(cancelAnimationFrame).toHaveBeenCalledWith(2)
     expect(requestAnimationFrame).toHaveBeenCalledTimes(2)
+    expect(document.documentElement.style.getPropertyValue('--pointer-x')).toBe('')
+    expect(document.documentElement.style.getPropertyValue('--pointer-y')).toBe('')
+    expect(document.documentElement.style.getPropertyValue('--tilt-x')).toBe('')
+    expect(document.documentElement.style.getPropertyValue('--tilt-y')).toBe('')
+  })
+
+  it('removes pointer parallax when a hybrid device sends a touch move', () => {
+    mockMotionPreferences()
+    const frames: FrameRequestCallback[] = []
+    const requestAnimationFrame = vi.fn((callback: FrameRequestCallback) => {
+      frames.push(callback)
+      return frames.length
+    })
+    vi.stubGlobal('requestAnimationFrame', requestAnimationFrame)
+    vi.stubGlobal('cancelAnimationFrame', vi.fn())
+
+    render(<PointerMotion />)
+    firePointerMove(window, { clientX: 25, clientY: 45, pointerType: 'mouse' })
+    frames[0](0)
+    expect(document.documentElement.style.getPropertyValue('--pointer-x')).toBe('25px')
+
+    firePointerMove(window, { clientX: 80, clientY: 90, pointerType: 'touch' })
+
+    expect(requestAnimationFrame).toHaveBeenCalledOnce()
     expect(document.documentElement.style.getPropertyValue('--pointer-x')).toBe('')
     expect(document.documentElement.style.getPropertyValue('--pointer-y')).toBe('')
     expect(document.documentElement.style.getPropertyValue('--tilt-x')).toBe('')
@@ -172,6 +205,31 @@ describe('motion primitives', () => {
     expect(button).toHaveStyle({ transform: 'scale(0.98) translate(4px, 4px)' })
 
     act(() => motionPreferences.change(query, matches))
+
+    expect(button).toHaveStyle({ transform: 'scale(0.98)' })
+  })
+
+  it('restores the caller transform when a hybrid device sends a touch move', () => {
+    mockMotionPreferences()
+    const { container } = render(
+      <MagneticButton style={{ transform: 'scale(0.98)' }}>开始</MagneticButton>,
+    )
+    const button = within(container).getByRole('button', { name: '开始' })
+    vi.spyOn(button, 'getBoundingClientRect').mockReturnValue({
+      left: 0,
+      top: 0,
+      width: 100,
+      height: 40,
+      right: 100,
+      bottom: 40,
+      x: 0,
+      y: 0,
+      toJSON: () => ({}),
+    })
+    firePointerMove(button, { clientX: 100, clientY: 40, pointerType: 'mouse' })
+    expect(button).toHaveStyle({ transform: 'scale(0.98) translate(4px, 4px)' })
+
+    firePointerMove(button, { clientX: 0, clientY: 0, pointerType: 'touch' })
 
     expect(button).toHaveStyle({ transform: 'scale(0.98)' })
   })

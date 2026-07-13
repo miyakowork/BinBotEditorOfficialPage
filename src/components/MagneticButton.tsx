@@ -32,6 +32,10 @@ export const MagneticButton = forwardRef<HTMLButtonElement, ButtonHTMLAttributes
 
     const handlePointerMove = (event: ReactPointerEvent<HTMLButtonElement>) => {
       onPointerMove?.(event)
+      if (event.pointerType === 'touch') {
+        event.currentTarget.style.transform = baseTransform ?? ''
+        return
+      }
       if (event.defaultPrevented || reducedMotion || !finePointer) return
 
       const bounds = event.currentTarget.getBoundingClientRect()

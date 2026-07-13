@@ -20,6 +20,31 @@ function blockFor(source: string, marker: string) {
   return ''
 }
 
+function customProperty(block: string, property: string) {
+  return block.match(new RegExp(`${property}:([^;]+);`))?.[1] ?? ''
+}
+
+function relativeLuminance(hex: string) {
+  const channels = hex
+    .slice(1)
+    .match(/.{2}/g)
+    ?.map((channel) => Number.parseInt(channel, 16) / 255)
+    .map((channel) => (
+      channel <= 0.04045
+        ? channel / 12.92
+        : ((channel + 0.055) / 1.055) ** 2.4
+    ))
+
+  if (!channels || channels.length !== 3 || channels.some(Number.isNaN)) return Number.NaN
+  return channels[0] * 0.2126 + channels[1] * 0.7152 + channels[2] * 0.0722
+}
+
+function contrastRatio(foreground: string, background: string) {
+  const lighter = Math.max(relativeLuminance(foreground), relativeLuminance(background))
+  const darker = Math.min(relativeLuminance(foreground), relativeLuminance(background))
+  return (lighter + 0.05) / (darker + 0.05)
+}
+
 describe('luminous paper visual contract', () => {
   it('defines the approved light tokens and reveal state', () => {
     expect(css).toContain('--paper:#f7f5ef')
@@ -34,11 +59,24 @@ describe('luminous paper visual contract', () => {
     expect(coarsePointer).toContain('.hero-light-field{display:none;}')
     expect(coarsePointer).toContain('.editor-window{transform:none!important;}')
     expect(coarsePointer).toContain('.magnetic-button{transform:none!important;}')
+    expect(coarsePointer).toContain('.reveal{opacity:1!important;transform:none!important;transition:none!important;}')
 
     const reducedMotion = blockFor(compactCss, '@media(prefers-reduced-motion:reduce)')
     expect(reducedMotion).toContain('html{scroll-behavior:auto;}')
     expect(reducedMotion).toContain('.hero-light-field{display:none;}')
     expect(reducedMotion).toContain('.editor-window,.magnetic-button,.reveal{opacity:1!important;transform:none!important;}')
+  })
+
+  it('uses an AA-compliant cyan token for meaningful product-stage text', () => {
+    const root = blockFor(compactCss, ':root')
+    const paper = customProperty(root, '--paper')
+    const cyanText = customProperty(root, '--cyan-text')
+    const caption = blockFor(css, '.product-stage-caption strong').replace(/\s+/g, '')
+
+    expect(paper).toMatch(/^#[\da-f]{6}$/i)
+    expect(cyanText).toMatch(/^#[\da-f]{6}$/i)
+    expect(contrastRatio(cyanText, paper)).toBeGreaterThanOrEqual(4.5)
+    expect(caption).toContain('color:var(--cyan-text);')
   })
 
   it('moves the hero light field with transform-only pointer positioning', () => {
