@@ -11,9 +11,9 @@ const demoSteps = [
 
 export function ProductDemo() {
   const { ref, inView } = useInView<HTMLElement>()
-  const { reducedMotion } = useMotionPreferences()
+  const { reducedMotion, finePointer } = useMotionPreferences()
   const activeStep = useDemoSequence({
-    active: inView,
+    active: inView && finePointer,
     reducedMotion,
     stepCount: demoSteps.length,
   })

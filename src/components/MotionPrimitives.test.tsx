@@ -1,6 +1,6 @@
 import { createRef } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
-import { fireEvent, render, screen } from '@testing-library/react'
+import { act, fireEvent, render, screen, within } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { MagneticButton } from './MagneticButton'
 import { PointerMotion } from './PointerMotion'
@@ -17,6 +17,45 @@ function mockMotionPreferences({ reducedMotion = false, finePointer = true } = {
     removeListener: vi.fn(),
     dispatchEvent: vi.fn(),
   })))
+}
+
+function mockChangingMotionPreferences() {
+  const callbacks = new Map<string, Set<() => void>>()
+  const mediaQueries = new Map<string, {
+    matches: boolean
+    media: string
+    addEventListener: ReturnType<typeof vi.fn>
+    removeEventListener: ReturnType<typeof vi.fn>
+  }>()
+
+  vi.stubGlobal('matchMedia', vi.fn((query: string) => {
+    const existing = mediaQueries.get(query)
+    if (existing) return existing
+
+    const queryCallbacks = new Set<() => void>()
+    callbacks.set(query, queryCallbacks)
+    const mediaQuery = {
+      matches: query !== '(prefers-reduced-motion: reduce)',
+      media: query,
+      onchange: null,
+      addEventListener: vi.fn((_type: string, callback: () => void) => queryCallbacks.add(callback)),
+      removeEventListener: vi.fn((_type: string, callback: () => void) => queryCallbacks.delete(callback)),
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      dispatchEvent: vi.fn(),
+    }
+    mediaQueries.set(query, mediaQuery)
+    return mediaQuery
+  }))
+
+  return {
+    change(query: string, matches: boolean) {
+      const mediaQuery = mediaQueries.get(query)
+      if (!mediaQuery) throw new Error(`Media query was not registered: ${query}`)
+      mediaQuery.matches = matches
+      callbacks.get(query)?.forEach((callback) => callback())
+    },
+  }
 }
 
 describe('motion primitives', () => {
@@ -100,5 +139,33 @@ describe('motion primitives', () => {
 
     expect(ref.current).toBe(button)
     expect(onClick).toHaveBeenCalledOnce()
+  })
+
+  it.each([
+    ['reduced motion turns on', '(prefers-reduced-motion: reduce)', true],
+    ['fine pointer turns off', '(hover: hover) and (pointer: fine)', false],
+  ])('restores the base transform when %s through matchMedia', (_label, query, matches) => {
+    const motionPreferences = mockChangingMotionPreferences()
+    const { container } = render(
+      <MagneticButton style={{ transform: 'scale(0.98)' }}>开始</MagneticButton>,
+    )
+    const button = within(container).getByRole('button', { name: '开始' })
+    vi.spyOn(button, 'getBoundingClientRect').mockReturnValue({
+      left: 0,
+      top: 0,
+      width: 100,
+      height: 40,
+      right: 100,
+      bottom: 40,
+      x: 0,
+      y: 0,
+      toJSON: () => ({}),
+    })
+    fireEvent(button, new MouseEvent('pointermove', { bubbles: true, clientX: 100, clientY: 40 }))
+    expect(button).toHaveStyle({ transform: 'scale(0.98) translate(4px, 4px)' })
+
+    act(() => motionPreferences.change(query, matches))
+
+    expect(button).toHaveStyle({ transform: 'scale(0.98)' })
   })
 })

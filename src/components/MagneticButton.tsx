@@ -1,5 +1,8 @@
 import {
   forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useRef,
   type ButtonHTMLAttributes,
   type PointerEvent as ReactPointerEvent,
 } from 'react'
@@ -18,6 +21,14 @@ export const MagneticButton = forwardRef<HTMLButtonElement, ButtonHTMLAttributes
   ) {
     const { reducedMotion, finePointer } = useMotionPreferences()
     const baseTransform = style?.transform
+    const buttonRef = useRef<HTMLButtonElement>(null)
+    useImperativeHandle(ref, () => buttonRef.current as HTMLButtonElement)
+
+    useEffect(() => {
+      if (reducedMotion || !finePointer) {
+        buttonRef.current?.style.setProperty('transform', baseTransform ?? '')
+      }
+    }, [baseTransform, finePointer, reducedMotion])
 
     const handlePointerMove = (event: ReactPointerEvent<HTMLButtonElement>) => {
       onPointerMove?.(event)
@@ -42,7 +53,7 @@ export const MagneticButton = forwardRef<HTMLButtonElement, ButtonHTMLAttributes
     return (
       <button
         {...buttonProps}
-        ref={ref}
+        ref={buttonRef}
         style={style}
         onPointerMove={handlePointerMove}
         onPointerLeave={handlePointerLeave}
