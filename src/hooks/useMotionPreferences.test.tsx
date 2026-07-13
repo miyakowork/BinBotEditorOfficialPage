@@ -25,9 +25,14 @@ describe('useMotionPreferences', () => {
 
     const { result, unmount } = renderHook(() => useMotionPreferences())
 
-    expect(result.current).toEqual({ reducedMotion: true, finePointer: false })
+    expect(result.current).toEqual({
+      reducedMotion: true,
+      finePointer: false,
+      touchCapable: false,
+    })
     expect(matchMedia).toHaveBeenCalledWith('(prefers-reduced-motion: reduce)')
     expect(matchMedia).toHaveBeenCalledWith('(hover: hover) and (pointer: fine)')
+    expect(matchMedia).toHaveBeenCalledWith('(any-pointer: coarse)')
 
     for (const mediaQuery of mediaQueries.values()) {
       expect(mediaQuery.addEventListener).toHaveBeenCalledWith('change', expect.any(Function))
@@ -36,5 +41,29 @@ describe('useMotionPreferences', () => {
     for (const mediaQuery of mediaQueries.values()) {
       expect(mediaQuery.removeEventListener).toHaveBeenCalledWith('change', expect.any(Function))
     }
+  })
+
+  it('reports touch capability when a fine-primary device also has a coarse pointer', () => {
+    vi.stubGlobal('matchMedia', vi.fn((query: string) => ({
+      matches: [
+        '(hover: hover) and (pointer: fine)',
+        '(any-pointer: coarse)',
+      ].includes(query),
+      media: query,
+      onchange: null,
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      dispatchEvent: vi.fn(),
+    })))
+
+    const { result } = renderHook(() => useMotionPreferences())
+
+    expect(result.current).toEqual({
+      reducedMotion: false,
+      finePointer: true,
+      touchCapable: true,
+    })
   })
 })

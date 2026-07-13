@@ -19,16 +19,16 @@ export const MagneticButton = forwardRef<HTMLButtonElement, ButtonHTMLAttributes
     { className, onPointerMove, onPointerLeave, style, ...buttonProps },
     ref,
   ) {
-    const { reducedMotion, finePointer } = useMotionPreferences()
+    const { reducedMotion, finePointer, touchCapable } = useMotionPreferences()
     const baseTransform = style?.transform
     const buttonRef = useRef<HTMLButtonElement>(null)
     useImperativeHandle(ref, () => buttonRef.current as HTMLButtonElement)
 
     useEffect(() => {
-      if (reducedMotion || !finePointer) {
+      if (reducedMotion || !finePointer || touchCapable) {
         buttonRef.current?.style.setProperty('transform', baseTransform ?? '')
       }
-    }, [baseTransform, finePointer, reducedMotion])
+    }, [baseTransform, finePointer, reducedMotion, touchCapable])
 
     const handlePointerMove = (event: ReactPointerEvent<HTMLButtonElement>) => {
       onPointerMove?.(event)
@@ -36,7 +36,7 @@ export const MagneticButton = forwardRef<HTMLButtonElement, ButtonHTMLAttributes
         event.currentTarget.style.transform = baseTransform ?? ''
         return
       }
-      if (event.defaultPrevented || reducedMotion || !finePointer) return
+      if (event.defaultPrevented || reducedMotion || !finePointer || touchCapable) return
 
       const bounds = event.currentTarget.getBoundingClientRect()
       if (bounds.width === 0 || bounds.height === 0) return

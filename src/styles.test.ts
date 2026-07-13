@@ -55,7 +55,10 @@ describe('luminous paper visual contract', () => {
   })
 
   it('hooks motion fallbacks to the interactive selectors inside each media query', () => {
-    const coarsePointer = blockFor(compactCss, '@media(hover:none),(pointer:coarse)')
+    const coarsePointer = blockFor(
+      compactCss,
+      '@media(hover:none),(pointer:coarse),(any-pointer:coarse)',
+    )
     expect(coarsePointer).toContain('.hero-light-field{display:none;}')
     expect(coarsePointer).toContain('.editor-window{transform:none!important;}')
     expect(coarsePointer).toContain('.magnetic-button{transform:none!important;}')

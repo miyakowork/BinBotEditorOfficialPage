@@ -1,14 +1,22 @@
 import { createRef } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
-import { act, fireEvent, render, screen, within } from '@testing-library/react'
+import { act, cleanup, fireEvent, render, screen, within } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { MagneticButton } from './MagneticButton'
 import { PointerMotion } from './PointerMotion'
 import { Reveal } from './Reveal'
 
-function mockMotionPreferences({ reducedMotion = false, finePointer = true } = {}) {
+function mockMotionPreferences({
+  reducedMotion = false,
+  finePointer = true,
+  touchCapable = false,
+} = {}) {
   vi.stubGlobal('matchMedia', vi.fn((query: string) => ({
-    matches: query === '(prefers-reduced-motion: reduce)' ? reducedMotion : finePointer,
+    matches: query === '(prefers-reduced-motion: reduce)'
+      ? reducedMotion
+      : query === '(any-pointer: coarse)'
+        ? touchCapable
+        : finePointer,
     media: query,
     onchange: null,
     addEventListener: vi.fn(),
@@ -35,7 +43,7 @@ function mockChangingMotionPreferences() {
     const queryCallbacks = new Set<() => void>()
     callbacks.set(query, queryCallbacks)
     const mediaQuery = {
-      matches: query !== '(prefers-reduced-motion: reduce)',
+      matches: query === '(hover: hover) and (pointer: fine)',
       media: query,
       onchange: null,
       addEventListener: vi.fn((_type: string, callback: () => void) => queryCallbacks.add(callback)),
@@ -69,6 +77,7 @@ function firePointerMove(
 
 describe('motion primitives', () => {
   afterEach(() => {
+    cleanup()
     vi.unstubAllGlobals()
     for (const property of ['--pointer-x', '--pointer-y', '--tilt-x', '--tilt-y']) {
       document.documentElement.style.removeProperty(property)
@@ -129,6 +138,37 @@ describe('motion primitives', () => {
     expect(document.documentElement.style.getPropertyValue('--pointer-y')).toBe('')
     expect(document.documentElement.style.getPropertyValue('--tilt-x')).toBe('')
     expect(document.documentElement.style.getPropertyValue('--tilt-y')).toBe('')
+  })
+
+  it('disables pointer and magnetic movement on a hybrid touch-capable device', () => {
+    mockMotionPreferences({ finePointer: true, touchCapable: true })
+    const requestAnimationFrame = vi.fn()
+    vi.stubGlobal('requestAnimationFrame', requestAnimationFrame)
+
+    render(
+      <>
+        <PointerMotion />
+        <MagneticButton>开始</MagneticButton>
+      </>,
+    )
+    const button = screen.getByRole('button', { name: '开始' })
+    vi.spyOn(button, 'getBoundingClientRect').mockReturnValue({
+      left: 0,
+      top: 0,
+      width: 100,
+      height: 40,
+      right: 100,
+      bottom: 40,
+      x: 0,
+      y: 0,
+      toJSON: () => ({}),
+    })
+
+    firePointerMove(window, { clientX: 25, clientY: 45, pointerType: 'mouse' })
+    firePointerMove(button, { clientX: 100, clientY: 40, pointerType: 'mouse' })
+
+    expect(requestAnimationFrame).not.toHaveBeenCalled()
+    expect(button.style.transform).toBe('')
   })
 
   it('renders reveal content visible before effects initialize', () => {

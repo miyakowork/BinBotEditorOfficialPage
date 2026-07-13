@@ -11,10 +11,10 @@ const demoSteps = [
 
 export function ProductDemo() {
   const { ref, inView } = useInView<HTMLElement>()
-  const { reducedMotion, finePointer } = useMotionPreferences()
+  const { reducedMotion, finePointer, touchCapable } = useMotionPreferences()
   const activeStep = useDemoSequence({
-    active: inView && finePointer,
-    reducedMotion,
+    active: inView && finePointer && !touchCapable,
+    reducedMotion: reducedMotion || touchCapable,
     stepCount: demoSteps.length,
   })
 

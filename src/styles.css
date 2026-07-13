@@ -1648,7 +1648,7 @@ a {
   }
 }
 
-@media (hover:none),(pointer:coarse) {
+@media (hover:none),(pointer:coarse),(any-pointer:coarse) {
   .hero-light-field {
     display: none;
   }

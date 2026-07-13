@@ -1,9 +1,10 @@
-import { act, render, screen } from '@testing-library/react'
+import { act, cleanup, render, screen } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { ProductDemo } from './ProductDemo'
 
 describe('ProductDemo', () => {
   afterEach(() => {
+    cleanup()
     vi.useRealTimers()
     vi.unstubAllGlobals()
   })
@@ -13,6 +14,32 @@ describe('ProductDemo', () => {
     vi.stubGlobal('IntersectionObserver', undefined)
     vi.stubGlobal('matchMedia', vi.fn((query: string) => ({
       matches: false,
+      media: query,
+      onchange: null,
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      dispatchEvent: vi.fn(),
+    })))
+
+    render(<ProductDemo />)
+    const demo = screen.getByRole('region', { name: 'BinBotEditor 编辑工作流演示' })
+    expect(demo).toHaveAttribute('data-demo-step', 'open')
+
+    act(() => vi.advanceTimersByTime(5400))
+
+    expect(demo).toHaveAttribute('data-demo-step', 'open')
+  })
+
+  it('keeps the first frame stable on a fine-primary hybrid touch device', () => {
+    vi.useFakeTimers()
+    vi.stubGlobal('IntersectionObserver', undefined)
+    vi.stubGlobal('matchMedia', vi.fn((query: string) => ({
+      matches: [
+        '(hover: hover) and (pointer: fine)',
+        '(any-pointer: coarse)',
+      ].includes(query),
       media: query,
       onchange: null,
       addEventListener: vi.fn(),

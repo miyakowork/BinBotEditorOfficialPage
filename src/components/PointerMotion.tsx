@@ -8,11 +8,11 @@ function removePointerProperties(root: HTMLElement) {
 }
 
 export function PointerMotion() {
-  const { reducedMotion, finePointer } = useMotionPreferences()
+  const { reducedMotion, finePointer, touchCapable } = useMotionPreferences()
 
   useEffect(() => {
     const root = document.documentElement
-    if (reducedMotion || !finePointer) {
+    if (reducedMotion || !finePointer || touchCapable) {
       removePointerProperties(root)
       return
     }
@@ -51,7 +51,7 @@ export function PointerMotion() {
       if (frame !== null) window.cancelAnimationFrame(frame)
       removePointerProperties(root)
     }
-  }, [finePointer, reducedMotion])
+  }, [finePointer, reducedMotion, touchCapable])
 
   return null
 }
