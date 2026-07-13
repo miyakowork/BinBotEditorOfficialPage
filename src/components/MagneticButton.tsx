@@ -16,7 +16,7 @@ function clampOffset(value: number) {
 
 export const MagneticButton = forwardRef<HTMLButtonElement, ButtonHTMLAttributes<HTMLButtonElement>>(
   function MagneticButton(
-    { onPointerMove, onPointerLeave, style, ...buttonProps },
+    { className, onPointerMove, onPointerLeave, style, ...buttonProps },
     ref,
   ) {
     const { reducedMotion, finePointer } = useMotionPreferences()
@@ -53,6 +53,7 @@ export const MagneticButton = forwardRef<HTMLButtonElement, ButtonHTMLAttributes
     return (
       <button
         {...buttonProps}
+        className={`magnetic-button${className ? ` ${className}` : ''}`}
         ref={buttonRef}
         style={style}
         onPointerMove={handlePointerMove}

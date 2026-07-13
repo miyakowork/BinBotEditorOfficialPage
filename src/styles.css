@@ -280,14 +280,15 @@ a {
 .hero-light-field {
   position: fixed;
   z-index: -1;
-  top: calc(var(--pointer-y, 20vh) - 280px);
-  left: calc(var(--pointer-x, 72vw) - 280px);
+  top: 0;
+  left: 0;
   width: 560px;
   height: 560px;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(112, 71, 232, 0.14), rgba(75, 191, 232, 0.06) 42%, transparent 70%);
   pointer-events: none;
-  transition: top 0.08s linear, left 0.08s linear;
+  transform: translate3d(calc(var(--pointer-x, 72vw) - 280px), calc(var(--pointer-y, 20vh) - 280px), 0);
+  will-change: transform;
 }
 
 .eyebrow,
@@ -1332,6 +1333,10 @@ a {
 @media (max-width: 760px) {
   .site-header {
     padding: 10px;
+  }
+
+  .brand {
+    min-height: 44px;
   }
 
   .site-nav {

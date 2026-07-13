@@ -114,11 +114,18 @@ describe('motion primitives', () => {
     const ref = createRef<HTMLButtonElement>()
     const onClick = vi.fn()
     render(
-      <MagneticButton ref={ref} type="button" aria-label="试用" onClick={onClick}>
+      <MagneticButton
+        ref={ref}
+        className="button button--small"
+        type="button"
+        aria-label="试用"
+        onClick={onClick}
+      >
         开始
       </MagneticButton>,
     )
     const button = screen.getByRole('button', { name: '试用' })
+    expect(button).toHaveClass('magnetic-button', 'button', 'button--small')
     vi.spyOn(button, 'getBoundingClientRect').mockReturnValue({
       left: 0,
       top: 0,
