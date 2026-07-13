@@ -1,3 +1,7 @@
+import { useDemoSequence } from '../hooks/useDemoSequence'
+import { useInView } from '../hooks/useInView'
+import { useMotionPreferences } from '../hooks/useMotionPreferences'
+
 const demoSteps = [
   { id: 'open', label: '打开文件' },
   { id: 'edit', label: '专注编辑' },
@@ -5,15 +9,18 @@ const demoSteps = [
   { id: 'preview', label: '实时预览' },
 ] as const
 
-export interface ProductDemoProps {
-  step?: number
-}
-
-export function ProductDemo({ step = 0 }: ProductDemoProps) {
-  const activeStep = Math.max(0, Math.min(step, demoSteps.length - 1))
+export function ProductDemo() {
+  const { ref, inView } = useInView<HTMLElement>()
+  const { reducedMotion } = useMotionPreferences()
+  const activeStep = useDemoSequence({
+    active: inView,
+    reducedMotion,
+    stepCount: demoSteps.length,
+  })
 
   return (
     <section
+      ref={ref}
       className="product-stage"
       aria-label="BinBotEditor 编辑工作流演示"
       data-demo-step={demoSteps[activeStep].id}

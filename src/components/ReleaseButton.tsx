@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { releaseStatus } from '../content/site'
+import { MagneticButton } from './MagneticButton'
 
 export interface ReleaseButtonProps {
   className?: string
@@ -11,13 +12,13 @@ export function ReleaseButton({ className = '', compact = false }: ReleaseButton
 
   return (
     <div className={`release-control${compact ? ' release-control--compact' : ''}`}>
-      <button
+      <MagneticButton
         className={className}
         type="button"
         onClick={() => setNoticeVisible(true)}
       >
         {releaseStatus.label}
-      </button>
+      </MagneticButton>
       {noticeVisible ? <p role="status">{releaseStatus.notice}</p> : null}
     </div>
   )
