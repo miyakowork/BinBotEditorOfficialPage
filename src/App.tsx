@@ -1,9 +1,11 @@
+import { CapabilitySections } from './components/CapabilitySections'
 import { Faq } from './components/Faq'
-import { FeatureSections } from './components/FeatureSections'
 import { Footer } from './components/Footer'
 import { Hero } from './components/Hero'
+import { MacSection } from './components/MacSection'
 import { Navigation } from './components/Navigation'
 import { ProductDemo } from './components/ProductDemo'
+import { WorkflowStrip } from './components/WorkflowStrip'
 import './styles.css'
 
 export default function App() {
@@ -13,7 +15,9 @@ export default function App() {
       <main>
         <Hero />
         <ProductDemo />
-        <FeatureSections />
+        <CapabilitySections />
+        <WorkflowStrip />
+        <MacSection />
         <Faq />
       </main>
       <Footer />

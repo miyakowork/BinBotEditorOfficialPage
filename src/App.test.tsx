@@ -14,6 +14,7 @@ describe('App', () => {
     expect(screen.getByRole('region', { name: 'BinBotEditor 编辑工作流演示' })).toBeVisible()
     expect(screen.getByRole('heading', { level: 3, name: '本地优先的工作流' })).toBeVisible()
     expect(screen.getByText('无需离开工作区，即可完成编写、格式化与预览。')).toBeVisible()
+    expect(screen.getByRole('heading', { name: '把复杂留在编辑器里，把专注留给你。' })).toBeVisible()
     expect(screen.getAllByText('settings.json')).toHaveLength(2)
     expect(screen.getAllByRole('button', { name: '首版试用即将发布' })).toHaveLength(3)
   })

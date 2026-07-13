@@ -6,9 +6,9 @@ export function Footer() {
     <footer className="site-footer" id="release">
       <div className="release-panel">
         <img src={assetUrl('binbot-editor.svg')} alt="" />
-        <p className="section-kicker">即将抵达 / 04</p>
-        <h2>下一段代码，<br />从这里开始。</h2>
-        <p>BinBotEditor for macOS 正在准备首次公开发布。</p>
+        <p className="section-kicker">发布计划 / 07</p>
+        <h2>把复杂留在编辑器里，把专注留给你。</h2>
+        <p>首版仅支持 macOS，试用版本即将发布。</p>
         <ReleaseButton className="button button--primary" />
       </div>
       <div className="footer-row">
