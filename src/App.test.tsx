@@ -3,16 +3,15 @@ import { describe, expect, it } from 'vitest'
 import App from './App'
 
 describe('App', () => {
-  it('presents the complete macOS product story and consistent release state', () => {
+  it('presents the complete local-first macOS story', () => {
     render(<App />)
 
-    expect(
-      screen.getByRole('heading', { level: 1, name: '思考，在代码之前。' }),
-    ).toBeVisible()
-    expect(screen.getByRole('region', { name: '内置格式化' })).toBeVisible()
-    expect(screen.getByText('你的代码，留在你的 Mac。')).toBeVisible()
-    expect(
-      screen.getAllByRole('button', { name: '首版试用即将发布' }),
-    ).toHaveLength(3)
+    expect(screen.getByRole('heading', { level: 1, name: '一台 Mac，就是完整工作台。' })).toBeVisible()
+    expect(screen.getByText('30+ 语言支持')).toBeVisible()
+    expect(screen.getByText('14 种离线格式化')).toBeVisible()
+    expect(screen.getByText('核心编辑无需云端')).toBeVisible()
+    expect(screen.getByRole('link', { name: '探索产品能力' })).toHaveAttribute('href', '#capabilities')
+    expect(screen.getByRole('region', { name: 'BinBotEditor 编辑工作流演示' })).toBeVisible()
+    expect(screen.getAllByRole('button', { name: '首版试用即将发布' })).toHaveLength(3)
   })
 })

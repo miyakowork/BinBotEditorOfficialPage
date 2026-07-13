@@ -1,23 +1,26 @@
 import { ReleaseButton } from './ReleaseButton'
 
+const heroMetrics = ['30+ 语言支持', '14 种离线格式化', '核心编辑无需云端'] as const
+
 export function Hero() {
   return (
     <section className="hero" id="top" aria-labelledby="hero-title">
-      <div className="hero-glow" aria-hidden="true" />
-      <p className="eyebrow hero-eyebrow">为 macOS 打造的本地代码编辑器</p>
-      <h1 id="hero-title" aria-label="思考，在代码之前。">
-        <span aria-hidden="true">思考，</span>
-        <span aria-hidden="true">在代码之前。</span>
+      <div className="hero-paper-grid" aria-hidden="true" />
+      <div className="hero-light-field" aria-hidden="true" />
+      <p className="eyebrow hero-eyebrow">BinBotEditor for macOS · 首版试用即将发布</p>
+      <h1 id="hero-title" aria-label="一台 Mac，就是完整工作台。">
+        <span aria-hidden="true">一台 Mac，</span>
+        <span aria-hidden="true">就是<span className="accent-word">完整工作台。</span></span>
       </h1>
       <div className="hero-bottom">
-        <p className="hero-summary">
-          快速、克制、完全本地。把复杂留给工具，
-          <span>把空间还给创造者。</span>
-        </p>
-        <ReleaseButton className="button button--primary" />
+        <p className="hero-summary">从打开本地文件，到跨项目搜索、离线格式化与 Markdown 实时预览。BinBotEditor 把日常编辑需要的能力，收进一个快速、专注、可自由配置的 macOS 编辑器。</p>
+        <div className="hero-actions">
+          <ReleaseButton className="button button--primary" />
+          <a className="text-link" href="#capabilities">探索产品能力 <span aria-hidden="true">↘</span></a>
+        </div>
       </div>
-      <div className="hero-meta" aria-label="产品特性摘要">
-        <span>MACOS NATIVE</span><span>LOCAL FIRST</span><span>BUILT-IN FORMATTERS</span>
+      <div className="hero-metrics" aria-label="产品能力摘要">
+        {heroMetrics.map((metric) => <span key={metric}>{metric}</span>)}
       </div>
     </section>
   )
