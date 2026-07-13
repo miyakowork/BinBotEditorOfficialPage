@@ -2,6 +2,8 @@
 
 BinBotEditor 的中文产品官网。首版面向 macOS，当前下载状态为“即将发布”。
 
+在线访问：[https://miyakowork.github.io/BinBotEditorOfficialPage/](https://miyakowork.github.io/BinBotEditorOfficialPage/)
+
 ## 本地开发
 
 ```bash
@@ -29,3 +31,7 @@ npm run build
 - 桌面、平板和手机响应式布局
 
 真实下载文件和发布日期将在 BinBotEditor 首次公开发布时补充。
+
+## 自动部署
+
+推送到 `main` 后，GitHub Actions 会依次运行测试和生产构建，并在验证成功后自动发布到 GitHub Pages。也可以从仓库的 Actions 页面手动触发部署。
