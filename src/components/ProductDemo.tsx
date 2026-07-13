@@ -39,14 +39,15 @@ export function ProductDemo({ step = 0 }: ProductDemoProps) {
             <div className="tab-row">
               <span>workspace.ts</span>
               <span>README.md</span>
+              <span>settings.json</span>
             </div>
             <pre aria-label="代码示例"><code>{`const workspace = createEditor({\n  local: true,\n  formatter: 'offline',\n  restoreSession: true,\n})`}</code></pre>
             <div className="format-command-demo">⇧ ⌥ F <strong>格式化文档</strong></div>
           </div>
           <aside className="preview-pane" aria-label="Markdown 实时预览">
             <b>实时预览</b>
-            <h3>Local-first workflow</h3>
-            <p>Write, format, and preview without leaving the workspace.</p>
+            <h3>本地优先的工作流</h3>
+            <p>无需离开工作区，即可完成编写、格式化与预览。</p>
           </aside>
         </div>
         <div className="status-bar">
