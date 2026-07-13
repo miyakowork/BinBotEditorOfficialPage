@@ -1,3 +1,5 @@
+import { assetUrl } from '../config/assets'
+
 const languages = ['JavaScript', 'TypeScript', 'Python', 'Rust', 'Java', 'Kotlin', 'PHP', 'HTML', 'CSS', 'JSON', 'Markdown', 'SQL', 'Shell', 'YAML']
 
 export function FeatureSections() {
@@ -21,7 +23,7 @@ export function FeatureSections() {
           </article>
           <article className="feature-card feature-card--violet">
             <span className="feature-index">03</span>
-            <div className="native-visual" aria-hidden="true"><img src="/binbot-editor.svg" alt="" /><span>⌘ K</span></div>
+            <div className="native-visual" aria-hidden="true"><img src={assetUrl('binbot-editor.svg')} alt="" /><span>⌘ K</span></div>
             <h3>为 Mac 而生</h3><p>熟悉的快捷键、窗口行为和桌面节奏，顺手得像系统本身。</p>
           </article>
         </div>

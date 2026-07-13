@@ -1,10 +1,11 @@
 import { ReleaseButton } from './ReleaseButton'
+import { assetUrl } from '../config/assets'
 
 export function Footer() {
   return (
     <footer className="site-footer" id="release">
       <div className="release-panel">
-        <img src="/binbot-editor.svg" alt="" />
+        <img src={assetUrl('binbot-editor.svg')} alt="" />
         <p className="section-kicker">即将抵达 / 04</p>
         <h2>下一段代码，<br />从这里开始。</h2>
         <p>BinBotEditor for macOS 正在准备首次公开发布。</p>
