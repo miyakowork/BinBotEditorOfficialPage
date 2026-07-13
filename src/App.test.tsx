@@ -12,7 +12,7 @@ describe('App', () => {
     expect(screen.getByRole('region', { name: '内置格式化' })).toBeVisible()
     expect(screen.getByText('你的代码，留在你的 Mac。')).toBeVisible()
     expect(
-      screen.getAllByRole('button', { name: 'macOS 版即将发布' }),
+      screen.getAllByRole('button', { name: '首版试用即将发布' }),
     ).toHaveLength(3)
   })
 })

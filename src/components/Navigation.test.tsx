@@ -16,7 +16,7 @@ describe('Navigation', () => {
     const closeButton = screen.getByRole('button', { name: '关闭导航菜单' })
     expect(closeButton).toHaveAttribute('aria-expanded', 'true')
 
-    await user.click(screen.getByRole('link', { name: '功能' }))
+    await user.click(screen.getByRole('link', { name: '产品能力' }))
     expect(screen.getByRole('button', { name: '打开导航菜单' })).toHaveAttribute(
       'aria-expanded',
       'false',

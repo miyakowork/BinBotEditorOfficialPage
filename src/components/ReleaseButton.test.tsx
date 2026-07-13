@@ -8,13 +8,13 @@ describe('ReleaseButton', () => {
     const user = userEvent.setup()
     render(<ReleaseButton />)
 
-    const button = screen.getByRole('button', { name: 'macOS 版即将发布' })
+    const button = screen.getByRole('button', { name: '首版试用即将发布' })
     expect(button).toBeEnabled()
 
     await user.click(button)
 
     expect(screen.getByRole('status')).toHaveTextContent(
-      'BinBotEditor 正在为首次发布做准备',
+      'BinBotEditor 首版 macOS 试用正在准备中，发布日期尚未公布。',
     )
   })
 })
