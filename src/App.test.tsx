@@ -16,6 +16,7 @@ describe('App', () => {
     expect(screen.getByText('无需离开工作区，即可完成编写、格式化与预览。')).toBeVisible()
     expect(screen.getByRole('heading', { name: '把复杂留在编辑器里，把专注留给你。' })).toBeVisible()
     expect(screen.getAllByText('settings.json')).toHaveLength(2)
-    expect(screen.getAllByRole('button', { name: '首版试用即将发布' })).toHaveLength(3)
+    expect(screen.getAllByRole('link', { name: '下载 macOS 试用版' })).toHaveLength(3)
+    expect(screen.getByText('BinBotEditor v0.1.0-beta 已开放试用。')).toBeVisible()
   })
 })
