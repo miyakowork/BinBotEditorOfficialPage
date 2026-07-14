@@ -77,12 +77,12 @@ export const faqItems = [
   {
     id: 'platforms',
     question: 'BinBotEditor 支持哪些平台？',
-    answer: 'v0.1.0-beta 适用于搭载 Apple Silicon 的 Mac。',
+    answer: 'v0.1.0-beta.1 适用于搭载 Apple Silicon 的 Mac。',
   },
   {
     id: 'release-date',
     question: '什么时候可以下载？',
-    answer: 'v0.1.0-beta 已开放下载，当前提供 macOS Apple Silicon 试用版。',
+    answer: 'v0.1.0-beta.1 已开放下载，当前提供 macOS Apple Silicon 试用版。',
   },
   {
     id: 'local-files',
