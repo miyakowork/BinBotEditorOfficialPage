@@ -12,7 +12,7 @@ export function ReleaseButton({ className = '', compact = false }: ReleaseButton
         className={`magnetic-button${className ? ` ${className}` : ''}`}
         href={releaseStatus.downloadUrl}
       >
-        {releaseStatus.label}
+        <span className="button-label">{releaseStatus.label}</span>
       </a>
       {!compact ? <p className="release-notice">{releaseStatus.notice}</p> : null}
     </div>

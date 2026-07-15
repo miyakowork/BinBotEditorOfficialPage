@@ -10,4 +10,9 @@ describe('index.html metadata', () => {
       '<meta name="description" content="BinBotEditor 是一款面向 macOS 的本地优先编辑器，支持 30+ 种语言、14 种离线格式化、全局搜索、Markdown 实时预览与 JSON 工具。" />',
     )
   })
+
+  it('declares the bundled icon so browsers do not request a missing favicon', () => {
+    expect(indexHtml).toContain('rel="icon"')
+    expect(indexHtml).toContain('href="./binbot-editor.svg"')
+  })
 })
