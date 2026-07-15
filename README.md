@@ -1,6 +1,6 @@
 # BinBotEditor 官方网站
 
-BinBotEditor 的中文产品官网。当前提供面向 macOS Apple Silicon 的 `v0.2.0` 正式版。
+BinBotEditor 的中文产品官网。当前提供面向 macOS Apple Silicon 的 `v0.2.1` 正式版。
 
 在线访问：[https://miyakowork.github.io/BinBotEditorOfficialPage/](https://miyakowork.github.io/BinBotEditorOfficialPage/)
 
