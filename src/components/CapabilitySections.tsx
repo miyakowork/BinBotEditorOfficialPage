@@ -48,7 +48,7 @@ export function CapabilitySections() {
     <section className="capabilities section" id="capabilities" aria-label="产品能力">
       <header className="section-heading">
         <p className="section-kicker">产品能力 / 01—04</p>
-        <h2 id="capabilities-title">从第一行，<br />到最后一次保存。</h2>
+        <h2 id="capabilities-title">从第一行，到最后一次保存。</h2>
       </header>
       <div className="capability-list">
         {capabilityChapters.map((chapter) => (

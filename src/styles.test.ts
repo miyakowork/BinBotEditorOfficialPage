@@ -119,6 +119,29 @@ describe('luminous paper visual contract', () => {
     expect(blockFor(phone, '.hero.release-notice')).toContain('width:100%;')
   })
 
+  it('uses a restrained editorial hierarchy after the hero', () => {
+    const sectionHeading = blockFor(compactCss, '.section-heading')
+    const sectionTitles = blockFor(compactCss, '.sectionh2,.site-footerh2')
+    const capabilityTitle = blockFor(compactCss, '.capability-copyh3')
+    const releaseTitle = blockFor(compactCss, '.release-panelh2')
+    const phone = blockFor(compactCss, '@media(max-width:760px)')
+
+    expect(sectionHeading).toContain('display:grid;')
+    expect(sectionHeading).toContain('grid-template-columns:minmax(120px,180px)minmax(0,1fr);')
+    expect(sectionTitles).toContain('max-width:900px;')
+    expect(sectionTitles).toContain('font:600clamp(52px,4.5vw,68px)/1.08var(--serif);')
+    expect(sectionTitles).toContain('letter-spacing:-0.045em;')
+    expect(sectionTitles).toContain('text-wrap:balance;')
+    expect(blockFor(compactCss, '.section-headingh2')).toContain('text-align:left;')
+    expect(capabilityTitle).toContain('font:600clamp(38px,3.8vw,54px)/1.08var(--serif);')
+    expect(capabilityTitle).toContain('text-wrap:balance;')
+    expect(releaseTitle).toContain('font-size:clamp(48px,4.8vw,68px);')
+    expect(blockFor(compactCss, '.mac-copy>p:not(.section-kicker)')).toContain('margin:0;')
+    expect(blockFor(phone, '.sectionh2,.site-footerh2')).toContain('font-size:clamp(38px,11.5vw,48px);')
+    expect(blockFor(phone, '.capability-copyh3')).toContain('font-size:clamp(34px,10vw,44px);')
+    expect(blockFor(phone, '.mac-copy>p:not(.section-kicker)')).toContain('margin:0;')
+  })
+
   it('shows the preview result when visitors select that step on phones', () => {
     const phone = blockFor(compactCss, '@media(max-width:760px)')
 

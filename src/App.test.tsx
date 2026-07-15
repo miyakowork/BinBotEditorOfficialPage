@@ -1,8 +1,19 @@
-import { render, screen, within } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
+import { cleanup, render, screen, within } from '@testing-library/react'
+import { afterEach, describe, expect, it } from 'vitest'
 import App from './App'
 
+afterEach(cleanup)
+
 describe('App', () => {
+  it('lets every post-hero section title wrap naturally', () => {
+    render(<App />)
+
+    const sectionTitles = screen.getAllByRole('heading', { level: 2 })
+
+    expect(sectionTitles).toHaveLength(5)
+    sectionTitles.forEach((title) => expect(title.querySelector('br')).toBeNull())
+  })
+
   it('presents the complete local-first macOS story', () => {
     render(<App />)
 

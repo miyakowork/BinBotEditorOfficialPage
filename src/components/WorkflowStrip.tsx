@@ -5,7 +5,7 @@ export function WorkflowStrip() {
     <section className="workflow section" id="workflow" aria-labelledby="workflow-title">
       <header className="section-heading">
         <p className="section-kicker">工作流 / 05</p>
-        <h2 id="workflow-title">上下文一直在，<br />思路不必重来。</h2>
+        <h2 id="workflow-title">上下文一直在，思路不必重来。</h2>
       </header>
       <ol className="workflow-list">
         {workflowItems.map((item) => (
