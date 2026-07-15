@@ -13,7 +13,7 @@ describe('ReleaseButton', () => {
       'https://github.com/miyakowork/BinBotEditorOfficialPage/releases/latest/download/BinBotEditor-macOS-arm64.dmg',
     )
     expect(screen.getByText(
-      '适用于 Apple Silicon，当前版本未经 Apple 公证；首次启动时可能需要在“隐私与安全性”中确认打开。',
+      'v0.1.0-beta.2 适用于 Apple Silicon，当前版本未经 Apple 公证；首次启动时可能需要在“隐私与安全性”中确认打开。',
     )).toBeVisible()
   })
 

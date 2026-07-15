@@ -16,7 +16,7 @@ export interface WorkflowItem {
 
 export const releaseStatus = {
   label: '下载 macOS 试用版',
-  notice: '适用于 Apple Silicon，当前版本未经 Apple 公证；首次启动时可能需要在“隐私与安全性”中确认打开。',
+  notice: 'v0.1.0-beta.2 适用于 Apple Silicon，当前版本未经 Apple 公证；首次启动时可能需要在“隐私与安全性”中确认打开。',
   available: true,
   downloadUrl: 'https://github.com/miyakowork/BinBotEditorOfficialPage/releases/latest/download/BinBotEditor-macOS-arm64.dmg',
 } as const
@@ -77,12 +77,12 @@ export const faqItems = [
   {
     id: 'platforms',
     question: 'BinBotEditor 支持哪些平台？',
-    answer: 'v0.1.0-beta.1 适用于搭载 Apple Silicon 的 Mac。',
+    answer: 'v0.1.0-beta.2 适用于搭载 Apple Silicon 的 Mac。',
   },
   {
     id: 'release-date',
     question: '什么时候可以下载？',
-    answer: 'v0.1.0-beta.1 已开放下载，当前提供 macOS Apple Silicon 试用版。',
+    answer: 'v0.1.0-beta.2 已开放下载，当前提供 macOS Apple Silicon 试用版。',
   },
   {
     id: 'local-files',
