@@ -8,7 +8,7 @@ export function Footer() {
         <img src={assetUrl('binbot-editor.svg')} alt="" />
         <p className="section-kicker">立即下载 / 07</p>
         <h2>把复杂留在编辑器里，把专注留给你。</h2>
-        <p>BinBotEditor v0.2.0 已开放下载。</p>
+        <p>BinBotEditor v0.2.1 已开放下载。</p>
         <ReleaseButton className="button button--primary" />
       </div>
       <div className="footer-row">

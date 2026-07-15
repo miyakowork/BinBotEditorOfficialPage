@@ -12,7 +12,7 @@ export function Hero() {
       <div className="hero-paper-grid" aria-hidden="true" />
       <div className="hero-light-field" aria-hidden="true" />
       <div className="hero-copy">
-        <p className="eyebrow hero-eyebrow">BinBotEditor for macOS · v0.2.0 已发布</p>
+        <p className="eyebrow hero-eyebrow">BinBotEditor for macOS · v0.2.1 已发布</p>
         <h1 id="hero-title" aria-label="一台 Mac，就是完整工作台。">
           <span aria-hidden="true">一台 Mac，</span>
           <span aria-hidden="true">就是<span className="accent-word">完整工作台。</span></span>
