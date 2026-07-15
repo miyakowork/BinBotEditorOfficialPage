@@ -18,8 +18,8 @@ describe('site content contract', () => {
 
   it('keeps product and release claims consistent', () => {
     expect(releaseStatus).toEqual({
-      label: '下载 macOS 试用版',
-      notice: 'v0.1.0-beta.2 适用于 Apple Silicon，当前版本未经 Apple 公证；首次启动时可能需要在“隐私与安全性”中确认打开。',
+      label: '下载 macOS 正式版',
+      notice: 'v0.2.0 适用于 Apple Silicon，当前版本未经 Apple 公证；首次启动时可能需要在“隐私与安全性”中确认打开。',
       available: true,
       downloadUrl: 'https://github.com/miyakowork/BinBotEditorOfficialPage/releases/latest/download/BinBotEditor-macOS-arm64.dmg',
     })

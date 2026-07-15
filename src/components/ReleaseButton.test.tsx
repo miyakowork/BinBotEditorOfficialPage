@@ -8,12 +8,12 @@ describe('ReleaseButton', () => {
   it('links directly to the public Apple Silicon release asset', () => {
     render(<ReleaseButton />)
 
-    expect(screen.getByRole('link', { name: '下载 macOS 试用版' })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: '下载 macOS 正式版' })).toHaveAttribute(
       'href',
       'https://github.com/miyakowork/BinBotEditorOfficialPage/releases/latest/download/BinBotEditor-macOS-arm64.dmg',
     )
     expect(screen.getByText(
-      'v0.1.0-beta.2 适用于 Apple Silicon，当前版本未经 Apple 公证；首次启动时可能需要在“隐私与安全性”中确认打开。',
+      'v0.2.0 适用于 Apple Silicon，当前版本未经 Apple 公证；首次启动时可能需要在“隐私与安全性”中确认打开。',
     )).toBeVisible()
   })
 
@@ -22,7 +22,7 @@ describe('ReleaseButton', () => {
       <ReleaseButton compact className="button button--small" />,
     )
 
-    expect(getByRole('link', { name: '下载 macOS 试用版' })).toHaveClass(
+    expect(getByRole('link', { name: '下载 macOS 正式版' })).toHaveClass(
       'magnetic-button',
       'button',
       'button--small',
