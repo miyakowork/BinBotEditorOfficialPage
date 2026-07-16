@@ -10,7 +10,7 @@ describe('ReleaseButton', () => {
 
     expect(screen.getByRole('link', { name: '下载 macOS 正式版' })).toHaveAttribute(
       'href',
-      'https://github.com/miyakowork/BinBotEditorOfficialPage/releases/download/v0.2.2/BinBotEditor-macOS-arm64.dmg',
+      'https://github.com/miyakowork/BinBotEditorOfficialPage/releases/download/v0.2.2/BinBotEditor-0.2.2-macOS-arm64.dmg',
     )
     expect(screen.getByText('下载 macOS 正式版')).toHaveClass('button-label')
     expect(screen.getByText(
