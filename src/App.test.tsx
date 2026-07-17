@@ -30,6 +30,6 @@ describe('App', () => {
     expect(screen.getByRole('heading', { name: '把复杂留在编辑器里，把专注留给你。' })).toBeVisible()
     expect(screen.getAllByText('settings.json')).toHaveLength(2)
     expect(screen.getAllByRole('link', { name: '下载 macOS 正式版' })).toHaveLength(3)
-    expect(screen.getByText('BinBotEditor v0.2.3 已开放下载。')).toBeVisible()
+    expect(screen.getByText('BinBotEditor v0.2.4 已开放下载。')).toBeVisible()
   })
 })
