@@ -24,9 +24,9 @@ export interface WorkflowItem {
 
 export const releaseStatus = {
   label: '下载 macOS 正式版',
-  notice: 'v0.6.1 适用于 Apple Silicon，当前版本未经 Apple 公证；首次启动时可能需要在“隐私与安全性”中确认打开。',
+  notice: 'v0.7.0 适用于 Apple Silicon，当前版本未经 Apple 公证；首次启动时可能需要在“隐私与安全性”中确认打开。',
   available: true,
-  downloadUrl: 'https://github.com/miyakowork/BinBotEditorOfficialPage/releases/download/v0.6.1/BinBotEditor-0.6.1-macOS-arm64.dmg',
+  downloadUrl: 'https://github.com/miyakowork/BinBotEditorOfficialPage/releases/download/v0.7.0/BinBotEditor-0.7.0-macOS-arm64.dmg',
 } as const
 
 export const navigationItems = [
@@ -77,16 +77,28 @@ export const capabilityChapters: readonly CapabilityChapter[] = [
   {
     id: 'tools', index: '05', eyebrow: '本地常用工具',
     title: '转换与解析，随手即用。',
-    description: '时间工具用一次输入同时完成时间戳转换与常用格式输出，cURL 页面则专注结构化解析；两页输入均不落盘，也不会发送请求。',
+    description: '时间工具明确输出 yyyy-MM-dd HH:mm:ss；cURL 工作台按 Query、Headers 与 Body 分区，JSON 请求体自动格式化并高亮。两页输入均不落盘，也不会发送请求。',
     metric: 'LOCAL',
   },
 ]
 
 export const releaseHistory: readonly ReleaseEntry[] = [
   {
-    version: 'v0.6.1',
+    version: 'v0.7.0',
     date: '2026-07-22',
     latest: true,
+    summary: '让时间与 cURL 解析结果更清晰，也更适合处理长内容。',
+    highlights: [
+      '时间工具新增明确的“格式化时间”结果，采用 yyyy-MM-dd HH:mm:ss 格式。',
+      'cURL 页面改为全宽命令输入与结构化结果工作台。',
+      'Query、Headers 与 Body 使用分区切换，长请求不再挤在左右分栏。',
+      'JSON 请求体自动格式化与语法高亮，非 JSON 内容保留原文。',
+    ],
+  },
+  {
+    version: 'v0.6.1',
+    date: '2026-07-22',
+    latest: false,
     summary: '把常用工具收敛为清晰、专注的两个工作区。',
     highlights: [
       '工具选择改为与 JSON / Markdown 一致的横向工具栏模式。',
@@ -129,12 +141,12 @@ export const faqItems = [
   {
     id: 'platforms',
     question: 'BinBotEditor 支持哪些平台？',
-    answer: 'v0.6.1 适用于搭载 Apple Silicon 的 Mac。',
+    answer: 'v0.7.0 适用于搭载 Apple Silicon 的 Mac。',
   },
   {
     id: 'release-date',
     question: '什么时候可以下载？',
-    answer: 'v0.6.1 已开放下载，当前提供 macOS Apple Silicon 正式版。',
+    answer: 'v0.7.0 已开放下载，当前提供 macOS Apple Silicon 正式版。',
   },
   {
     id: 'local-files',
