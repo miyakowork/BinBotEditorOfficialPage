@@ -19,9 +19,9 @@ describe('site content contract', () => {
   it('keeps product and release claims consistent', () => {
     expect(releaseStatus).toEqual({
       label: '下载 macOS 正式版',
-      notice: 'v0.5.0 适用于 Apple Silicon，当前版本未经 Apple 公证；首次启动时可能需要在“隐私与安全性”中确认打开。',
+      notice: 'v0.6.0 适用于 Apple Silicon，当前版本未经 Apple 公证；首次启动时可能需要在“隐私与安全性”中确认打开。',
       available: true,
-      downloadUrl: 'https://github.com/miyakowork/BinBotEditorOfficialPage/releases/download/v0.5.0/BinBotEditor-0.5.0-macOS-arm64.dmg',
+      downloadUrl: 'https://github.com/miyakowork/BinBotEditorOfficialPage/releases/download/v0.6.0/BinBotEditor-0.6.0-macOS-arm64.dmg',
     })
     expect(navigationItems.map(({ label }) => label)).toEqual([
       '产品能力',
