@@ -6,6 +6,7 @@ import { MacSection } from './components/MacSection'
 import { Navigation } from './components/Navigation'
 import { PointerMotion } from './components/PointerMotion'
 import { ProductDemo } from './components/ProductDemo'
+import { ReleaseNotes } from './components/ReleaseNotes'
 import { Reveal } from './components/Reveal'
 import { WorkflowStrip } from './components/WorkflowStrip'
 import './styles.css'
@@ -21,6 +22,7 @@ export default function App() {
         <Reveal><CapabilitySections /></Reveal>
         <Reveal><WorkflowStrip /></Reveal>
         <Reveal><MacSection /></Reveal>
+        <Reveal><ReleaseNotes /></Reveal>
         <Reveal><Faq /></Reveal>
       </main>
       <Footer />

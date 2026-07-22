@@ -1,10 +1,18 @@
 export interface CapabilityChapter {
-  id: 'languages' | 'formatters' | 'markdown' | 'json'
+  id: 'languages' | 'formatters' | 'markdown' | 'json' | 'tools'
   index: string
   eyebrow: string
   title: string
   description: string
   metric: string
+}
+
+export interface ReleaseEntry {
+  version: string
+  date: string
+  latest: boolean
+  summary: string
+  highlights: readonly string[]
 }
 
 export interface WorkflowItem {
@@ -16,15 +24,16 @@ export interface WorkflowItem {
 
 export const releaseStatus = {
   label: '下载 macOS 正式版',
-  notice: 'v0.6.0 适用于 Apple Silicon，当前版本未经 Apple 公证；首次启动时可能需要在“隐私与安全性”中确认打开。',
+  notice: 'v0.6.1 适用于 Apple Silicon，当前版本未经 Apple 公证；首次启动时可能需要在“隐私与安全性”中确认打开。',
   available: true,
-  downloadUrl: 'https://github.com/miyakowork/BinBotEditorOfficialPage/releases/download/v0.6.0/BinBotEditor-0.6.0-macOS-arm64.dmg',
+  downloadUrl: 'https://github.com/miyakowork/BinBotEditorOfficialPage/releases/download/v0.6.1/BinBotEditor-0.6.1-macOS-arm64.dmg',
 } as const
 
 export const navigationItems = [
   { label: '产品能力', href: '#capabilities' },
   { label: '工作流', href: '#workflow' },
   { label: '为 Mac 而生', href: '#mac' },
+  { label: '版本更新', href: '#updates' },
   { label: '下载', href: '#release' },
 ] as const
 
@@ -65,6 +74,49 @@ export const capabilityChapters: readonly CapabilityChapter[] = [
     description: '格式化、深度解析、折叠与展开、转义与反转义、压缩复制集中完成。',
     metric: '{}',
   },
+  {
+    id: 'tools', index: '05', eyebrow: '本地常用工具',
+    title: '转换与解析，随手即用。',
+    description: '时间工具用一次输入同时完成时间戳转换与常用格式输出，cURL 页面则专注结构化解析；两页输入均不落盘，也不会发送请求。',
+    metric: 'LOCAL',
+  },
+]
+
+export const releaseHistory: readonly ReleaseEntry[] = [
+  {
+    version: 'v0.6.1',
+    date: '2026-07-22',
+    latest: true,
+    summary: '把常用工具收敛为清晰、专注的两个工作区。',
+    highlights: [
+      '工具选择改为与 JSON / Markdown 一致的横向工具栏模式。',
+      '常用工具入口与工具 Tab 更换为更清晰的工具集合图标。',
+      '合并时间戳转换与时间格式化，并重新设计时间工具和 cURL 解析页面。',
+      '官网新增能力亮点与可持续维护的历史版本记录。',
+    ],
+  },
+  {
+    version: 'v0.6.0',
+    date: '2026-07-22',
+    latest: false,
+    summary: '把高频转换与解析能力带进独立工具 Tab。',
+    highlights: [
+      '新增时间戳转换与日期时间格式化。',
+      '新增本地 cURL 结构解析，不执行命令、不发送请求。',
+      '工具 Tab 支持重复创建、拖拽排序与数量上限设置。',
+    ],
+  },
+  {
+    version: 'v0.5.0',
+    date: '2026-07-17',
+    latest: false,
+    summary: '完善可选智能能力与正式版发布体验。',
+    highlights: [
+      '新增可选 AI 文件自动命名，并支持多种服务提供方。',
+      'API 密钥在本机加密保存，启用前可验证连接状态。',
+      '完善 macOS 正式版构建、下载与版本信息展示。',
+    ],
+  },
 ]
 
 export const workflowItems: readonly WorkflowItem[] = [
@@ -77,12 +129,12 @@ export const faqItems = [
   {
     id: 'platforms',
     question: 'BinBotEditor 支持哪些平台？',
-    answer: 'v0.6.0 适用于搭载 Apple Silicon 的 Mac。',
+    answer: 'v0.6.1 适用于搭载 Apple Silicon 的 Mac。',
   },
   {
     id: 'release-date',
     question: '什么时候可以下载？',
-    answer: 'v0.6.0 已开放下载，当前提供 macOS Apple Silicon 正式版。',
+    answer: 'v0.6.1 已开放下载，当前提供 macOS Apple Silicon 正式版。',
   },
   {
     id: 'local-files',

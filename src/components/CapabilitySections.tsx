@@ -36,6 +36,14 @@ function renderCapabilityVisual(id: CapabilityChapter['id']) {
           {['格式化', '深度解析', '全部折叠', '转义', '压缩复制'].map((tool) => <span key={tool}>{tool}</span>)}
         </div>
       )
+    case 'tools':
+      return (
+        <div className="local-tools-board" aria-label="本地常用工具">
+          {['时间工具', 'cURL 解析', '时间戳 + 格式化', '仅本地处理'].map((tool, index) => (
+            <span data-active={index === 0 ? 'true' : undefined} key={tool}>{tool}</span>
+          ))}
+        </div>
+      )
     default: {
       const exhaustiveId: never = id
       return exhaustiveId
@@ -47,7 +55,7 @@ export function CapabilitySections() {
   return (
     <section className="capabilities section" id="capabilities" aria-label="产品能力">
       <header className="section-heading">
-        <p className="section-kicker">产品能力 / 01—04</p>
+        <p className="section-kicker">产品能力 / 01—05</p>
         <h2 id="capabilities-title">从第一行，到最后一次保存。</h2>
       </header>
       <div className="capability-list">

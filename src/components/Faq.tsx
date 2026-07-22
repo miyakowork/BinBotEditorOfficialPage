@@ -6,7 +6,7 @@ export function Faq() {
 
   return (
     <section className="faq section" id="faq" aria-labelledby="faq-title">
-      <div className="section-kicker">常见问题 / 05</div>
+      <div className="section-kicker">常见问题 / 08</div>
       <h2 id="faq-title">在开始之前。</h2>
       <div className="faq-list">
         {faqItems.map((item, index) => {

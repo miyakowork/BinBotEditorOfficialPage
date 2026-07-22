@@ -1081,6 +1081,59 @@ a {
   grid-column: 1 / -1;
 }
 
+.capability--tools .capability-visual {
+  background-color: var(--editor);
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+}
+
+.capability--tools .capability-visual > b {
+  color: #a994ff;
+  font-size: clamp(60px, 7vw, 96px);
+  letter-spacing: -0.06em;
+}
+
+.local-tools-board {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  width: min(520px, 100%);
+  margin-top: 110px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.28);
+}
+
+.local-tools-board::before {
+  grid-column: 1 / -1;
+  min-height: 34px;
+  padding: 12px 16px 0;
+  content: "TOOLS  /  LOCAL WORKSPACE";
+  background: #111016;
+  color: #8f8998;
+  font: 700 8px/1 ui-monospace, "SFMono-Regular", Consolas, monospace;
+  letter-spacing: 0.14em;
+}
+
+.local-tools-board span {
+  min-height: 88px;
+  padding: 29px 22px;
+  background: #1e1c24;
+  color: #928c9a;
+  font-size: 11px;
+}
+
+.local-tools-board span[data-active="true"] {
+  background: rgba(112, 71, 232, 0.22);
+  color: #eeeaff;
+  box-shadow: inset 0 2px #9f87ff;
+}
+
 .workflow {
   border-top: 1px solid var(--line);
 }
@@ -1310,6 +1363,120 @@ a {
 
 .faq {
   border-top: 1px solid var(--line);
+}
+
+.release-notes {
+  border-top: 1px solid var(--line);
+}
+
+.release-timeline {
+  border-top: 1px solid var(--line);
+}
+
+.release-entry {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(130px, 0.28fr) minmax(0, 1fr);
+  min-height: 320px;
+  border-bottom: 1px solid var(--line);
+}
+
+.release-entry::before {
+  position: absolute;
+  top: 42px;
+  left: calc(28% - 4px);
+  width: 8px;
+  height: 8px;
+  border: 2px solid var(--paper);
+  border-radius: 50%;
+  content: "";
+  background: var(--muted);
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+.release-entry--latest {
+  margin-inline: -22px;
+  padding-inline: 22px;
+  border: 1px solid rgba(112, 71, 232, 0.2);
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 86% 10%, rgba(75, 191, 232, 0.11), transparent 22rem),
+    rgba(112, 71, 232, 0.055);
+  box-shadow: 0 24px 65px rgba(52, 34, 78, 0.08);
+}
+
+.release-entry--latest::before {
+  background: var(--violet);
+  box-shadow: 0 0 0 5px rgba(112, 71, 232, 0.13);
+}
+
+.release-entry__meta {
+  display: flex;
+  align-items: flex-start;
+  padding: 42px 38px 42px 0;
+  border-right: 1px solid var(--line);
+  flex-direction: column;
+  gap: 14px;
+}
+
+.release-entry__meta time {
+  color: var(--muted);
+  font: 700 10px/1 ui-monospace, "SFMono-Regular", Consolas, monospace;
+  letter-spacing: 0.1em;
+}
+
+.release-entry__meta span {
+  padding: 6px 9px;
+  border-radius: 999px;
+  background: var(--violet);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.release-entry__body {
+  padding: 38px 0 45px 64px;
+}
+
+.release-entry__body h3 {
+  margin: 0;
+  font: 600 clamp(42px, 4vw, 58px)/1 var(--serif);
+  letter-spacing: -0.05em;
+}
+
+.release-entry__body > p {
+  margin: 18px 0 24px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.release-entry__body ul {
+  display: grid;
+  gap: 11px;
+  margin: 0;
+  padding: 0;
+  color: var(--ink);
+  font-size: 12px;
+  line-height: 1.65;
+  list-style: none;
+}
+
+.release-entry__body li {
+  position: relative;
+  padding-left: 18px;
+}
+
+.release-entry__body li::before {
+  position: absolute;
+  top: 0.68em;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  content: "";
+  background: var(--cyan-text);
 }
 
 .faq h2 {
@@ -1550,6 +1717,10 @@ a {
   .mac-section {
     grid-template-columns: 1fr;
     gap: 70px;
+  }
+
+  .release-entry::before {
+    left: calc(28% - 4px);
   }
 }
 
@@ -1887,6 +2058,41 @@ a {
   .mac-visual > span:last-child {
     right: 28px;
     bottom: 32px;
+  }
+
+  .local-tools-board {
+    grid-template-columns: 1fr;
+    margin-top: 92px;
+  }
+
+  .release-entry,
+  .release-entry--latest {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .release-entry--latest {
+    margin-inline: -10px;
+    padding-inline: 18px;
+  }
+
+  .release-entry::before {
+    display: none;
+  }
+
+  .release-entry__meta {
+    padding: 28px 0 18px;
+    border-right: 0;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .release-entry__body {
+    padding: 0 0 38px;
+  }
+
+  .release-entry__body h3 {
+    font-size: 42px;
   }
 
   .faq-item button {
