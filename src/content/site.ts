@@ -24,9 +24,9 @@ export interface WorkflowItem {
 
 export const releaseStatus = {
   label: '下载 macOS 正式版',
-  notice: 'v0.7.0 适用于 Apple Silicon，当前版本未经 Apple 公证；首次启动时可能需要在“隐私与安全性”中确认打开。',
+  notice: 'v0.7.1 适用于 Apple Silicon，当前版本未经 Apple 公证；首次启动时可能需要在“隐私与安全性”中确认打开。',
   available: true,
-  downloadUrl: 'https://github.com/miyakowork/BinBotEditorOfficialPage/releases/download/v0.7.0/BinBotEditor-0.7.0-macOS-arm64.dmg',
+  downloadUrl: 'https://github.com/miyakowork/BinBotEditorOfficialPage/releases/download/v0.7.1/BinBotEditor-0.7.1-macOS-arm64.dmg',
 } as const
 
 export const navigationItems = [
@@ -84,9 +84,20 @@ export const capabilityChapters: readonly CapabilityChapter[] = [
 
 export const releaseHistory: readonly ReleaseEntry[] = [
   {
+    version: 'v0.7.1',
+    date: '2026-07-23',
+    latest: true,
+    summary: '修复标签页拖动排序，让内部拖动与文件拖放各司其职。',
+    highlights: [
+      '修复标签页拖动后顺序未变化的问题。',
+      '全局文件拖放只处理真实文件，不再拦截内部标签页拖动排序。',
+      '拖动只调整标签页顺序，不会切换当前激活的标签页。',
+    ],
+  },
+  {
     version: 'v0.7.0',
     date: '2026-07-22',
-    latest: true,
+    latest: false,
     summary: '让时间与 cURL 解析结果更清晰，也更适合处理长内容。',
     highlights: [
       '时间工具新增明确的“格式化时间”结果，采用 yyyy-MM-dd HH:mm:ss 格式。',
@@ -141,12 +152,12 @@ export const faqItems = [
   {
     id: 'platforms',
     question: 'BinBotEditor 支持哪些平台？',
-    answer: 'v0.7.0 适用于搭载 Apple Silicon 的 Mac。',
+    answer: 'v0.7.1 适用于搭载 Apple Silicon 的 Mac。',
   },
   {
     id: 'release-date',
     question: '什么时候可以下载？',
-    answer: 'v0.7.0 已开放下载，当前提供 macOS Apple Silicon 正式版。',
+    answer: 'v0.7.1 已开放下载，当前提供 macOS Apple Silicon 正式版。',
   },
   {
     id: 'local-files',
