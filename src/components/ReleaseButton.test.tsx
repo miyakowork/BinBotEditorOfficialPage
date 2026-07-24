@@ -10,11 +10,11 @@ describe('ReleaseButton', () => {
 
     expect(screen.getByRole('link', { name: '下载 macOS 正式版' })).toHaveAttribute(
       'href',
-      'https://github.com/miyakowork/BinBotEditorOfficialPage/releases/download/v0.7.2/BinBotEditor-0.7.2-macOS-arm64.dmg',
+      'https://github.com/miyakowork/BinBotEditorOfficialPage/releases/download/v0.8.0/BinBotEditor-0.8.0-macOS-arm64.dmg',
     )
     expect(screen.getByText('下载 macOS 正式版')).toHaveClass('button-label')
     expect(screen.getByText(
-      'v0.7.2 适用于 Apple Silicon，当前版本未经 Apple 公证；首次启动时可能需要在“隐私与安全性”中确认打开。',
+      'v0.8.0 适用于 Apple Silicon，当前版本未经 Apple 公证；首次启动时可能需要在“隐私与安全性”中确认打开。',
     )).toBeVisible()
   })
 

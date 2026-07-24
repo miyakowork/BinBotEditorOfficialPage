@@ -16,7 +16,7 @@ describe('Faq', () => {
     await user.click(question)
 
     expect(question).toHaveAttribute('aria-expanded', 'true')
-    expect(screen.getByText('v0.7.2 适用于搭载 Apple Silicon 的 Mac。')).toBeVisible()
+    expect(screen.getByText('v0.8.0 适用于搭载 Apple Silicon 的 Mac；Apple 本机翻译需要 macOS 15 或更高版本。')).toBeVisible()
 
     const localFilesQuestion = screen.getByRole('button', {
       name: '代码会上传到云端吗？',

@@ -24,9 +24,9 @@ export interface WorkflowItem {
 
 export const releaseStatus = {
   label: '下载 macOS 正式版',
-  notice: 'v0.7.2 适用于 Apple Silicon，当前版本未经 Apple 公证；首次启动时可能需要在“隐私与安全性”中确认打开。',
+  notice: 'v0.8.0 适用于 Apple Silicon，当前版本未经 Apple 公证；首次启动时可能需要在“隐私与安全性”中确认打开。',
   available: true,
-  downloadUrl: 'https://github.com/miyakowork/BinBotEditorOfficialPage/releases/download/v0.7.2/BinBotEditor-0.7.2-macOS-arm64.dmg',
+  downloadUrl: 'https://github.com/miyakowork/BinBotEditorOfficialPage/releases/download/v0.8.0/BinBotEditor-0.8.0-macOS-arm64.dmg',
 } as const
 
 export const navigationItems = [
@@ -77,16 +77,27 @@ export const capabilityChapters: readonly CapabilityChapter[] = [
   {
     id: 'tools', index: '05', eyebrow: '本地常用工具',
     title: '转换与解析，随手即用。',
-    description: '时间工具明确输出 yyyy-MM-dd HH:mm:ss；cURL 工作台按 Query、Headers 与 Body 分区，JSON 请求体自动格式化并高亮。两页输入均不落盘，也不会发送请求。',
+    description: 'Apple Translation 在 macOS 15+ 上提供本机翻译；时间工具支持常用日历边界快捷操作，cURL 工作台按 Query、Headers 与 Body 分区。工具输入均不落盘，翻译模型由系统按需管理。',
     metric: 'LOCAL',
   },
 ]
 
 export const releaseHistory: readonly ReleaseEntry[] = [
   {
-    version: 'v0.7.2',
+    version: 'v0.8.0',
     date: '2026-07-24',
     latest: true,
+    summary: '新增 Apple 本机翻译，并让文件与工具工作区各自独立。',
+    highlights: [
+      '新增 Apple Translation 本机翻译工具，支持 macOS 15+；语言模型由系统按需管理，原文与译文仅保留在内存中。',
+      '文件 Tab 与工具 Tab 分为两个独立工作区，分别维护当前标签与拖动顺序。',
+      '时间工具新增今天、昨天等常用时间边界快捷操作。',
+    ],
+  },
+  {
+    version: 'v0.7.2',
+    date: '2026-07-24',
+    latest: false,
     summary: '让标签页拖动在 macOS 上真正可靠，并补齐 cURL 输入区的亮色主题。',
     highlights: [
       '标签页拖动改用适配 WKWebView 的 Pointer Events，拖放后顺序稳定生效。',
@@ -163,12 +174,12 @@ export const faqItems = [
   {
     id: 'platforms',
     question: 'BinBotEditor 支持哪些平台？',
-    answer: 'v0.7.2 适用于搭载 Apple Silicon 的 Mac。',
+    answer: 'v0.8.0 适用于搭载 Apple Silicon 的 Mac；Apple 本机翻译需要 macOS 15 或更高版本。',
   },
   {
     id: 'release-date',
     question: '什么时候可以下载？',
-    answer: 'v0.7.2 已开放下载，当前提供 macOS Apple Silicon 正式版。',
+    answer: 'v0.8.0 已开放下载，当前提供 macOS Apple Silicon 正式版。',
   },
   {
     id: 'local-files',
