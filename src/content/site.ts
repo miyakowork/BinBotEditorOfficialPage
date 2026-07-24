@@ -24,9 +24,9 @@ export interface WorkflowItem {
 
 export const releaseStatus = {
   label: '下载 macOS 正式版',
-  notice: 'v0.8.0 适用于 Apple Silicon，当前版本未经 Apple 公证；首次启动时可能需要在“隐私与安全性”中确认打开。',
+  notice: 'v0.9.0 适用于 Apple Silicon，当前版本未经 Apple 公证；首次启动时可能需要在“隐私与安全性”中确认打开。',
   available: true,
-  downloadUrl: 'https://github.com/miyakowork/BinBotEditorOfficialPage/releases/download/v0.8.0/BinBotEditor-0.8.0-macOS-arm64.dmg',
+  downloadUrl: 'https://github.com/miyakowork/BinBotEditorOfficialPage/releases/download/v0.9.0/BinBotEditor-0.9.0-macOS-arm64.dmg',
 } as const
 
 export const navigationItems = [
@@ -77,16 +77,27 @@ export const capabilityChapters: readonly CapabilityChapter[] = [
   {
     id: 'tools', index: '05', eyebrow: '本地常用工具',
     title: '转换与解析，随手即用。',
-    description: 'Apple Translation 在 macOS 15+ 上提供本机翻译；时间工具支持常用日历边界快捷操作，cURL 工作台按 Query、Headers 与 Body 分区。工具输入均不落盘，翻译模型由系统按需管理。',
-    metric: 'LOCAL',
+    description: 'AI 翻译复用当前服务商与模型，API Key 由本机加密保险库管理；时间和 cURL 工具仍完全本地处理。文件输入不落盘，翻译前会明确提示联网处理。',
+    metric: 'AI+',
   },
 ]
 
 export const releaseHistory: readonly ReleaseEntry[] = [
   {
-    version: 'v0.8.0',
+    version: 'v0.9.0',
     date: '2026-07-24',
     latest: true,
+    summary: '让 AI 翻译、文件夹打开和工作区切换真正融入编辑器。',
+    highlights: [
+      '翻译改用当前 AI 服务商与模型，支持 20 种常用语言；使用前需配置并验证自己的 API Key，凭据由本机加密保险库管理。',
+      'macOS 现在可将 BinBotEditor 识别为能够打开文件夹的应用，外部文件夹会直接作为文件工作区打开。',
+      '文件与工具工作区切换移动到顶部工具栏，两个工作区的 Tab 继续保持独立。',
+    ],
+  },
+  {
+    version: 'v0.8.0',
+    date: '2026-07-24',
+    latest: false,
     summary: '新增 Apple 本机翻译，并让文件与工具工作区各自独立。',
     highlights: [
       '新增 Apple Translation 本机翻译工具，支持 macOS 15+；语言模型由系统按需管理，原文与译文仅保留在内存中。',
@@ -174,17 +185,17 @@ export const faqItems = [
   {
     id: 'platforms',
     question: 'BinBotEditor 支持哪些平台？',
-    answer: 'v0.8.0 适用于搭载 Apple Silicon 的 Mac；Apple 本机翻译需要 macOS 15 或更高版本。',
+    answer: 'v0.9.0 适用于搭载 Apple Silicon 的 Mac；AI 翻译需要用户自行配置受支持服务商的 API Key。',
   },
   {
     id: 'release-date',
     question: '什么时候可以下载？',
-    answer: 'v0.8.0 已开放下载，当前提供 macOS Apple Silicon 正式版。',
+    answer: 'v0.9.0 已开放下载，当前提供 macOS Apple Silicon 正式版。',
   },
   {
     id: 'local-files',
     question: '代码会上传到云端吗？',
-    answer: '核心编辑和格式化无需云端；可选智能功能仅在启用时参与工作流。',
+    answer: '核心编辑、格式化、时间和 cURL 工具无需云端；AI 翻译仅在用户主动使用时，将待翻译内容发送给所选服务商。',
   },
   {
     id: 'formatting',
