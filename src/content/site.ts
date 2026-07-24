@@ -24,9 +24,9 @@ export interface WorkflowItem {
 
 export const releaseStatus = {
   label: '下载 macOS 正式版',
-  notice: 'v0.7.1 适用于 Apple Silicon，当前版本未经 Apple 公证；首次启动时可能需要在“隐私与安全性”中确认打开。',
+  notice: 'v0.7.2 适用于 Apple Silicon，当前版本未经 Apple 公证；首次启动时可能需要在“隐私与安全性”中确认打开。',
   available: true,
-  downloadUrl: 'https://github.com/miyakowork/BinBotEditorOfficialPage/releases/download/v0.7.1/BinBotEditor-0.7.1-macOS-arm64.dmg',
+  downloadUrl: 'https://github.com/miyakowork/BinBotEditorOfficialPage/releases/download/v0.7.2/BinBotEditor-0.7.2-macOS-arm64.dmg',
 } as const
 
 export const navigationItems = [
@@ -84,9 +84,20 @@ export const capabilityChapters: readonly CapabilityChapter[] = [
 
 export const releaseHistory: readonly ReleaseEntry[] = [
   {
+    version: 'v0.7.2',
+    date: '2026-07-24',
+    latest: true,
+    summary: '让标签页拖动在 macOS 上真正可靠，并补齐 cURL 输入区的亮色主题。',
+    highlights: [
+      '标签页拖动改用适配 WKWebView 的 Pointer Events，拖放后顺序稳定生效。',
+      '拖动只调整标签页顺序，当前激活的标签页保持不变。',
+      'cURL Command Deck 输入区域完整适配亮色与暗色主题。',
+    ],
+  },
+  {
     version: 'v0.7.1',
     date: '2026-07-23',
-    latest: true,
+    latest: false,
     summary: '修复标签页拖动排序，让内部拖动与文件拖放各司其职。',
     highlights: [
       '修复标签页拖动后顺序未变化的问题。',
@@ -152,12 +163,12 @@ export const faqItems = [
   {
     id: 'platforms',
     question: 'BinBotEditor 支持哪些平台？',
-    answer: 'v0.7.1 适用于搭载 Apple Silicon 的 Mac。',
+    answer: 'v0.7.2 适用于搭载 Apple Silicon 的 Mac。',
   },
   {
     id: 'release-date',
     question: '什么时候可以下载？',
-    answer: 'v0.7.1 已开放下载，当前提供 macOS Apple Silicon 正式版。',
+    answer: 'v0.7.2 已开放下载，当前提供 macOS Apple Silicon 正式版。',
   },
   {
     id: 'local-files',
