@@ -24,9 +24,9 @@ export interface WorkflowItem {
 
 export const releaseStatus = {
   label: '下载 macOS 正式版',
-  notice: 'v0.9.0 适用于 Apple Silicon，当前版本未经 Apple 公证；首次启动时可能需要在“隐私与安全性”中确认打开。',
+  notice: 'v0.10.0 适用于 Apple Silicon，当前版本未经 Apple 公证；首次启动时可能需要在“隐私与安全性”中确认打开。',
   available: true,
-  downloadUrl: 'https://github.com/miyakowork/BinBotEditorOfficialPage/releases/download/v0.9.0/BinBotEditor-0.9.0-macOS-arm64.dmg',
+  downloadUrl: 'https://github.com/miyakowork/BinBotEditorOfficialPage/releases/download/v0.10.0/BinBotEditor-0.10.0-macOS-arm64.dmg',
 } as const
 
 export const navigationItems = [
@@ -77,16 +77,27 @@ export const capabilityChapters: readonly CapabilityChapter[] = [
   {
     id: 'tools', index: '05', eyebrow: '本地常用工具',
     title: '转换与解析，随手即用。',
-    description: 'AI 翻译复用当前服务商与模型，API Key 由本机加密保险库管理；时间和 cURL 工具仍完全本地处理。文件输入不落盘，翻译前会明确提示联网处理。',
+    description: 'AI 翻译复用当前服务商与模型，API Key 由本机加密保险库管理；时间、cURL 解析、编码与 AES-GCM 加密完全本地处理。HTTP 请求支持导入 cURL，但只会在用户显式发送时联网。',
     metric: 'AI+',
   },
 ]
 
 export const releaseHistory: readonly ReleaseEntry[] = [
   {
+    version: 'v0.10.0',
+    date: '2026-07-28',
+    latest: true,
+    summary: '把调试请求、编码与加密能力安全地收进独立工具工作区。',
+    highlights: [
+      '新增 HTTP 请求工具：可导入 cURL 或手动构建 Method、URL、Query、Headers 与 Body；仅在明确点击发送后联网，并将响应预览限制在 5 MB。',
+      '新增编码与加密工具：支持 Base64、Base64URL、Hex、URL 编解码、SHA-2 摘要，以及基于 AES-GCM-256 的本地密码加解密。',
+      '首次切换到工具工作区会自动创建一个工具 Tab；请求、密码、明文与结果只保留在当前工具 Tab 内存中，关闭后立即清除。',
+    ],
+  },
+  {
     version: 'v0.9.0',
     date: '2026-07-24',
-    latest: true,
+    latest: false,
     summary: '让 AI 翻译、文件夹打开和工作区切换真正融入编辑器。',
     highlights: [
       '翻译改用当前 AI 服务商与模型，支持 20 种常用语言；使用前需配置并验证自己的 API Key，凭据由本机加密保险库管理。',
@@ -185,17 +196,17 @@ export const faqItems = [
   {
     id: 'platforms',
     question: 'BinBotEditor 支持哪些平台？',
-    answer: 'v0.9.0 适用于搭载 Apple Silicon 的 Mac；AI 翻译需要用户自行配置受支持服务商的 API Key。',
+    answer: 'v0.10.0 适用于搭载 Apple Silicon 的 Mac；AI 翻译需要用户自行配置受支持服务商的 API Key。',
   },
   {
     id: 'release-date',
     question: '什么时候可以下载？',
-    answer: 'v0.9.0 已开放下载，当前提供 macOS Apple Silicon 正式版。',
+    answer: 'v0.10.0 已开放下载，当前提供 macOS Apple Silicon 正式版。',
   },
   {
     id: 'local-files',
     question: '代码会上传到云端吗？',
-    answer: '核心编辑、格式化、时间和 cURL 工具无需云端；AI 翻译仅在用户主动使用时，将待翻译内容发送给所选服务商。',
+    answer: '核心编辑、格式化、时间、cURL 解析、编码与加密工具无需云端；HTTP 请求与 AI 翻译只会在用户主动发送时联网。',
   },
   {
     id: 'formatting',

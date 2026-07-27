@@ -1,6 +1,6 @@
 # BinBotEditor 官方网站
 
-BinBotEditor 的中文产品官网。当前提供面向 macOS Apple Silicon 的 `v0.9.0` 正式版。
+BinBotEditor 的中文产品官网。当前提供面向 macOS Apple Silicon 的 `v0.10.0` 正式版。
 
 在线访问：[https://miyakowork.github.io/BinBotEditorOfficialPage/](https://miyakowork.github.io/BinBotEditorOfficialPage/)
 
@@ -31,6 +31,8 @@ npm run build
 - Markdown 实时预览
 - JSON 工具
 - 使用自备 API Key 的 AI 翻译
+- 导入 cURL 与显式发送的 HTTP 请求
+- 本地编码、SHA-2 摘要与 AES-GCM 加解密
 - 文件与工具独立工作区
 - 时间边界快捷操作
 - 全局搜索与会话恢复
