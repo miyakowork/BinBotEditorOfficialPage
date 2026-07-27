@@ -39,9 +39,22 @@ function renderCapabilityVisual(id: CapabilityChapter['id']) {
     case 'tools':
       return (
         <div className="local-tools-board" aria-label="本地常用工具">
-          {['时间工具', 'cURL 解析', '时间戳 + 格式化', '仅本地处理'].map((tool, index) => (
-            <span data-active={index === 0 ? 'true' : undefined} key={tool}>{tool}</span>
-          ))}
+          <div className="local-tools-board__bar"><span>TOOLS</span><strong>工具 Tab · 5 个工作台</strong></div>
+          <div className="local-tools-board__grid">
+            {[
+              ['时间工具', '时间戳 · 本地', 'local'],
+              ['cURL 解析', '只解析 · 不执行', 'local'],
+              ['HTTP 请求', '导入 cURL · 显式发送', 'network'],
+              ['编码与加密', 'SHA-2 · AES-GCM', 'local'],
+              ['AI 翻译', '自备 Key · 主动联网', 'network'],
+            ].map(([name, detail, scope]) => (
+              <div className="local-tool-card" data-scope={scope} key={name}>
+                <strong>{name}</strong>
+                <span>{detail}</span>
+              </div>
+            ))}
+          </div>
+          <p>输入仅留在当前工具 Tab；网络能力始终由你主动触发。</p>
         </div>
       )
     default: {

@@ -76,9 +76,9 @@ export const capabilityChapters: readonly CapabilityChapter[] = [
   },
   {
     id: 'tools', index: '05', eyebrow: '本地常用工具',
-    title: '转换与解析，随手即用。',
-    description: 'AI 翻译复用当前服务商与模型，API Key 由本机加密保险库管理；时间、cURL 解析、编码与 AES-GCM 加密完全本地处理。HTTP 请求支持导入 cURL，但只会在用户显式发送时联网。',
-    metric: 'AI+',
+    title: '编辑之外，也是一张工具台。',
+    description: '时间、cURL 解析、编码与 AES-GCM 加密都在本地完成；HTTP 请求可直接导入 cURL，但仅在你明确发送后联网。AI 翻译复用当前服务商与模型，API Key 仍由本机加密保险库管理。',
+    metric: '05',
   },
 ]
 
