@@ -24,9 +24,9 @@ export interface WorkflowItem {
 
 export const releaseStatus = {
   label: '下载 macOS 正式版',
-  notice: 'v0.10.2 适用于 Apple Silicon，当前版本未经 Apple 公证；首次启动时可能需要在“隐私与安全性”中确认打开。',
+  notice: 'v0.10.3 适用于 Apple Silicon，当前版本未经 Apple 公证；首次启动时可能需要在“隐私与安全性”中确认打开。',
   available: true,
-  downloadUrl: 'https://github.com/miyakowork/BinBotEditorOfficialPage/releases/download/v0.10.2/BinBotEditor-0.10.2-macOS-arm64.dmg',
+  downloadUrl: 'https://github.com/miyakowork/BinBotEditorOfficialPage/releases/download/v0.10.3/BinBotEditor-0.10.3-macOS-arm64.dmg',
 } as const
 
 export const navigationItems = [
@@ -84,9 +84,20 @@ export const capabilityChapters: readonly CapabilityChapter[] = [
 
 export const releaseHistory: readonly ReleaseEntry[] = [
   {
-    version: 'v0.10.2',
+    version: 'v0.10.3',
     date: '2026-07-28',
     latest: true,
+    summary: '修复恢复会话后正文与行号错位、文本大面积空白的问题。',
+    highlights: [
+      '主窗口真正显示后通知编辑器，在连续两个可见渲染帧后重建 CodeMirror 字体指标与高度映射。',
+      '正文、行号与折叠栏统一继承同一套字体大小和行高，避免不同渲染层使用不一致的几何参数。',
+      '覆盖正常启动与超时兜底两条窗口显示路径，并新增启动时序与文本渲染回归测试。',
+    ],
+  },
+  {
+    version: 'v0.10.2',
+    date: '2026-07-28',
+    latest: false,
     summary: '修复自定义字体下编辑器文本错位、发虚与行列渲染异常。',
     highlights: [
       '等待所选字体加载完成后重新测量 CodeMirror 字符宽度，避免字形与光标、行列坐标使用不同字体指标。',
@@ -218,12 +229,12 @@ export const faqItems = [
   {
     id: 'platforms',
     question: 'BinBotEditor 支持哪些平台？',
-    answer: 'v0.10.2 适用于搭载 Apple Silicon 的 Mac；AI 翻译需要用户自行配置受支持服务商的 API Key。',
+    answer: 'v0.10.3 适用于搭载 Apple Silicon 的 Mac；AI 翻译需要用户自行配置受支持服务商的 API Key。',
   },
   {
     id: 'release-date',
     question: '什么时候可以下载？',
-    answer: 'v0.10.2 已开放下载，当前提供 macOS Apple Silicon 正式版。',
+    answer: 'v0.10.3 已开放下载，当前提供 macOS Apple Silicon 正式版。',
   },
   {
     id: 'local-files',
