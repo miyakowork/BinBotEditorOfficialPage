@@ -20,9 +20,9 @@ describe('site content contract', () => {
   it('keeps product and release claims consistent', () => {
     expect(releaseStatus).toEqual({
       label: '下载 macOS 正式版',
-      notice: 'v0.10.0 适用于 Apple Silicon，当前版本未经 Apple 公证；首次启动时可能需要在“隐私与安全性”中确认打开。',
+      notice: 'v0.10.1 适用于 Apple Silicon，当前版本未经 Apple 公证；首次启动时可能需要在“隐私与安全性”中确认打开。',
       available: true,
-      downloadUrl: 'https://github.com/miyakowork/BinBotEditorOfficialPage/releases/download/v0.10.0/BinBotEditor-0.10.0-macOS-arm64.dmg',
+      downloadUrl: 'https://github.com/miyakowork/BinBotEditorOfficialPage/releases/download/v0.10.1/BinBotEditor-0.10.1-macOS-arm64.dmg',
     })
     expect(navigationItems.map(({ label }) => label)).toEqual([
       '产品能力',
@@ -48,15 +48,15 @@ describe('site content contract', () => {
   })
 
   it('keeps release history newest first and highlights the current release', () => {
-    expect(releaseHistory.map(({ version }) => version)).toEqual(['v0.10.0', 'v0.9.0', 'v0.8.0', 'v0.7.2', 'v0.7.1', 'v0.7.0', 'v0.6.1', 'v0.6.0', 'v0.5.0'])
-    expect(releaseHistory[0]).toMatchObject({ version: 'v0.10.0', latest: true })
+    expect(releaseHistory.map(({ version }) => version)).toEqual(['v0.10.1', 'v0.10.0', 'v0.9.0', 'v0.8.0', 'v0.7.2', 'v0.7.1', 'v0.7.0', 'v0.6.1', 'v0.6.0', 'v0.5.0'])
+    expect(releaseHistory[0]).toMatchObject({ version: 'v0.10.1', latest: true })
     expect(releaseHistory.slice(1).every(({ latest }) => !latest)).toBe(true)
     expect(releaseHistory[0].highlights).toEqual(expect.arrayContaining([
-      expect.stringContaining('HTTP 请求'),
-      expect.stringContaining('AES-GCM-256'),
-      expect.stringContaining('首次切换到工具工作区'),
+      expect.stringContaining('Vite 前端资源'),
+      expect.stringContaining('启动失败兜底'),
+      expect.stringContaining('回归验证'),
     ]))
-    expect(releaseHistory[5].highlights).toEqual(expect.arrayContaining([
+    expect(releaseHistory[6].highlights).toEqual(expect.arrayContaining([
       expect.stringContaining('yyyy-MM-dd HH:mm:ss'),
       expect.stringContaining('JSON'),
       expect.stringContaining('Query'),

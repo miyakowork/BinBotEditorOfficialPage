@@ -24,9 +24,9 @@ export interface WorkflowItem {
 
 export const releaseStatus = {
   label: '下载 macOS 正式版',
-  notice: 'v0.10.0 适用于 Apple Silicon，当前版本未经 Apple 公证；首次启动时可能需要在“隐私与安全性”中确认打开。',
+  notice: 'v0.10.1 适用于 Apple Silicon，当前版本未经 Apple 公证；首次启动时可能需要在“隐私与安全性”中确认打开。',
   available: true,
-  downloadUrl: 'https://github.com/miyakowork/BinBotEditorOfficialPage/releases/download/v0.10.0/BinBotEditor-0.10.0-macOS-arm64.dmg',
+  downloadUrl: 'https://github.com/miyakowork/BinBotEditorOfficialPage/releases/download/v0.10.1/BinBotEditor-0.10.1-macOS-arm64.dmg',
 } as const
 
 export const navigationItems = [
@@ -84,9 +84,20 @@ export const capabilityChapters: readonly CapabilityChapter[] = [
 
 export const releaseHistory: readonly ReleaseEntry[] = [
   {
-    version: 'v0.10.0',
+    version: 'v0.10.1',
     date: '2026-07-28',
     latest: true,
+    summary: '修复 macOS 发布包启动后只显示透明窗口的问题。',
+    highlights: [
+      '修复发布构建未追踪 Vite 前端资源的问题，确保每次打包都会嵌入当前界面资源。',
+      '补充启动失败兜底界面，避免前端加载异常时只留下空白窗口。',
+      '完成 macOS 安装包、签名与实际启动界面的回归验证。',
+    ],
+  },
+  {
+    version: 'v0.10.0',
+    date: '2026-07-28',
+    latest: false,
     summary: '把调试请求、编码与加密能力安全地收进独立工具工作区。',
     highlights: [
       '新增 HTTP 请求工具：可导入 cURL 或手动构建 Method、URL、Query、Headers 与 Body；仅在明确点击发送后联网，并将响应预览限制在 5 MB。',
@@ -196,12 +207,12 @@ export const faqItems = [
   {
     id: 'platforms',
     question: 'BinBotEditor 支持哪些平台？',
-    answer: 'v0.10.0 适用于搭载 Apple Silicon 的 Mac；AI 翻译需要用户自行配置受支持服务商的 API Key。',
+    answer: 'v0.10.1 适用于搭载 Apple Silicon 的 Mac；AI 翻译需要用户自行配置受支持服务商的 API Key。',
   },
   {
     id: 'release-date',
     question: '什么时候可以下载？',
-    answer: 'v0.10.0 已开放下载，当前提供 macOS Apple Silicon 正式版。',
+    answer: 'v0.10.1 已开放下载，当前提供 macOS Apple Silicon 正式版。',
   },
   {
     id: 'local-files',
