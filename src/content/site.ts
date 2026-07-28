@@ -24,9 +24,9 @@ export interface WorkflowItem {
 
 export const releaseStatus = {
   label: '下载 macOS 正式版',
-  notice: 'v0.10.1 适用于 Apple Silicon，当前版本未经 Apple 公证；首次启动时可能需要在“隐私与安全性”中确认打开。',
+  notice: 'v0.10.2 适用于 Apple Silicon，当前版本未经 Apple 公证；首次启动时可能需要在“隐私与安全性”中确认打开。',
   available: true,
-  downloadUrl: 'https://github.com/miyakowork/BinBotEditorOfficialPage/releases/download/v0.10.1/BinBotEditor-0.10.1-macOS-arm64.dmg',
+  downloadUrl: 'https://github.com/miyakowork/BinBotEditorOfficialPage/releases/download/v0.10.2/BinBotEditor-0.10.2-macOS-arm64.dmg',
 } as const
 
 export const navigationItems = [
@@ -84,9 +84,20 @@ export const capabilityChapters: readonly CapabilityChapter[] = [
 
 export const releaseHistory: readonly ReleaseEntry[] = [
   {
-    version: 'v0.10.1',
+    version: 'v0.10.2',
     date: '2026-07-28',
     latest: true,
+    summary: '修复自定义字体下编辑器文本错位、发虚与行列渲染异常。',
+    highlights: [
+      '等待所选字体加载完成后重新测量 CodeMirror 字符宽度，避免字形与光标、行列坐标使用不同字体指标。',
+      '统一编辑内容与行号区的字体参数，并关闭会破坏等宽布局的连字、字距与字体合成。',
+      '移除编辑器文本层的透明度合成动画，让 macOS WKWebView 保持清晰稳定的文字渲染。',
+    ],
+  },
+  {
+    version: 'v0.10.1',
+    date: '2026-07-28',
+    latest: false,
     summary: '修复 macOS 发布包启动后只显示透明窗口的问题。',
     highlights: [
       '修复发布构建未追踪 Vite 前端资源的问题，确保每次打包都会嵌入当前界面资源。',
@@ -207,12 +218,12 @@ export const faqItems = [
   {
     id: 'platforms',
     question: 'BinBotEditor 支持哪些平台？',
-    answer: 'v0.10.1 适用于搭载 Apple Silicon 的 Mac；AI 翻译需要用户自行配置受支持服务商的 API Key。',
+    answer: 'v0.10.2 适用于搭载 Apple Silicon 的 Mac；AI 翻译需要用户自行配置受支持服务商的 API Key。',
   },
   {
     id: 'release-date',
     question: '什么时候可以下载？',
-    answer: 'v0.10.1 已开放下载，当前提供 macOS Apple Silicon 正式版。',
+    answer: 'v0.10.2 已开放下载，当前提供 macOS Apple Silicon 正式版。',
   },
   {
     id: 'local-files',
