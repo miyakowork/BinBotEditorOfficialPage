@@ -24,9 +24,9 @@ export interface WorkflowItem {
 
 export const releaseStatus = {
   label: '下载 macOS 正式版',
-  notice: 'v0.10.5 适用于 Apple Silicon，当前版本未经 Apple 公证；首次启动时可能需要在“隐私与安全性”中确认打开。',
+  notice: 'v0.10.6 适用于 Apple Silicon，当前版本未经 Apple 公证；首次启动时可能需要在“隐私与安全性”中确认打开。',
   available: true,
-  downloadUrl: 'https://github.com/miyakowork/BinBotEditorOfficialPage/releases/download/v0.10.5/BinBotEditor-0.10.5-macOS-arm64.dmg',
+  downloadUrl: 'https://github.com/miyakowork/BinBotEditorOfficialPage/releases/download/v0.10.6/BinBotEditor-0.10.6-macOS-arm64.dmg',
 } as const
 
 export const navigationItems = [
@@ -84,9 +84,20 @@ export const capabilityChapters: readonly CapabilityChapter[] = [
 
 export const releaseHistory: readonly ReleaseEntry[] = [
   {
+    version: 'v0.10.6',
+    date: '2026-07-30',
+    latest: true,
+    summary: '修复 macOS 正式版中 JSON、SQL 等文件内容空白或错位，并完善编码工具的亮色主题与对齐。',
+    highlights: [
+      '修复 Tauri 生产资产 CSP 拦截 CodeMirror 运行时样式的问题，恢复折叠栏、行号与正文的正常布局和语法高亮。',
+      '在真实 tauri:// 打包应用中验证长 JSON、多行 SQL 以及明暗主题，确保官网安装包走过与用户一致的渲染路径。',
+      '编码与加密工具的结果区域现在跟随明暗主题，并统一左右标题基线与文本框边界。',
+    ],
+  },
+  {
     version: 'v0.10.5',
     date: '2026-07-29',
-    latest: true,
+    latest: false,
     summary: '修复部分 Mac 上仍会出现正文与行号分离、文件内容整体下沉的问题。',
     highlights: [
       '文件编辑器工作区不再使用 translate/transform 入场动画，避免 CodeMirror 位于不受支持的变换祖先下。',
@@ -251,12 +262,12 @@ export const faqItems = [
   {
     id: 'platforms',
     question: 'BinBotEditor 支持哪些平台？',
-    answer: 'v0.10.5 适用于搭载 Apple Silicon 的 Mac；AI 翻译需要用户自行配置受支持服务商的 API Key。',
+    answer: 'v0.10.6 适用于搭载 Apple Silicon 的 Mac；AI 翻译需要用户自行配置受支持服务商的 API Key。',
   },
   {
     id: 'release-date',
     question: '什么时候可以下载？',
-    answer: 'v0.10.5 已开放下载，当前提供 macOS Apple Silicon 正式版。',
+    answer: 'v0.10.6 已开放下载，当前提供 macOS Apple Silicon 正式版。',
   },
   {
     id: 'local-files',
